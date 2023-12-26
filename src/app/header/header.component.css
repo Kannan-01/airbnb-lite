@@ -1,0 +1,16 @@
+.dropdown-menu {
+  min-width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 15px;
+  line-height: 30px;
+}
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgb(253, 196, 207)!important;
+}
+.form-control::placeholder {
+  color: #999;
+}

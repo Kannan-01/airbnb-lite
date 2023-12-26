@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg" style="border: 1px solid #ccc">
+  <div style="padding: 0px 80px" class="container-fluid">
+    <a class="navbar-brand" routerLink="">
+      <img width="118" height="64" [src]="brandlogo" alt="" />
+    </a>
+    <div class="d-flex justify-content-center align-items-center">
+      <input
+        style="height: 2.8rem; border-radius: 44px; padding: 0px 200px"
+        type="text"
+        class="form-control"
+        placeholder="what type are you looking for ?"
+      />
+      <div
+        style="
+          margin-left: -40px;
+          width: 2rem;
+          height: 2rem;
+          background-color: rgb(255, 56, 92);
+          color: white;
+        "
+        class="rounded-circle d-flex justify-content-center align-items-center btn"
+      >
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div
+      class="d-flex justify-content-center align-items-center navbar-nav flex-wrap"
+    >
+      <div class="nav-item">
+        <a class="nav-link btn " style="color: rgb(34, 34, 34); font-size: 14px"
+          >Airbnb your home</a
+        >
+      </div>
+      <li class="nav-item dropdown">
+        <div
+          class="border-0 text-dark btn"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <div
+            style="
+              width: 40px;
+              height: 40px;
+              background-color: rgb(255, 56, 92);
+            "
+            class="rounded-circle"
+          >
+            <i
+              style="color:white"
+              class="fa-solid fa-user fs-4 p-2"
+            ></i>
+          </div>
+          <!-- <div style="width: 40px; height: 40px" class="rounded-circle">
+            <img
+              style="width: 100%; object-fit: cover"
+              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-rouge.png"
+              alt=""
+            />
+          </div> -->
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+          <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </li>
+    </div>
+  </div>
+</nav>
