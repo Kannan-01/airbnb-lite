@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { HostComponent } from './host/host.component';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path:"host",component:HostComponent
+  },
+  {
+    path:"view/:id",component:ViewComponent
   },
   {
     path:"**",redirectTo:""

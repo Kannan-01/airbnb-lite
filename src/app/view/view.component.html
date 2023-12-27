@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container-fluid" style="padding: 0px 80px">
+  <div class="mt-4 mb-3"><h3>Hikkaduva, Sri Lanka</h3></div>
+  <div class="imageBanner">
+    <img
+      src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      alt=""
+    />
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-7">
+      <div class="d-flex align-items-center">
+        <div style="width: 45px; height: 45px">
+          <img
+            style="width: 100%; object-fit: cover"
+            src="https://a0.muscache.com/im/pictures/user/d069a7f2-54b5-479f-8e88-dc58a27e1e18.jpg?im_w=240"
+            alt=""
+            class="rounded-circle"
+          />
+        </div>
+        <div class="ms-4">
+          Hosted by Joseph
+          <br />
+          <span class="hostDetails">5 years of hosting</span>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div class="col-5">
+      <div class="card ms-auto p-4">
+        <h4>₹5000 <span class="fs-5 text-muted">night</span></h4>
+        <mat-form-field>
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date">
+            <input matEndDate placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+               
+      </div>
+    </div>
+  </div>
+</div>

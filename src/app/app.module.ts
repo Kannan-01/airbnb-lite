@@ -9,6 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { HostComponent } from './host/host.component';
+import { ViewComponent } from './view/view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +25,17 @@ import { HostComponent } from './host/host.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    HostComponent
+    HostComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
