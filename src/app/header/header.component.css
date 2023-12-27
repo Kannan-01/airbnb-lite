@@ -9,8 +9,29 @@
 }
 .form-control:focus {
   box-shadow: none;
-  border: 1px solid rgb(253, 196, 207)!important;
+  border: 1px solid rgb(253, 196, 207) !important;
 }
 .form-control::placeholder {
   color: #999;
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    position: relative;
+  }
+  .searchBar {
+    display: none;
+  }
+  .container-fluid {
+    padding: 0px 10px !important;
+  }
+  .dropCase {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 20px;
+  }
+  .host{
+    display: none;
+  }
 }

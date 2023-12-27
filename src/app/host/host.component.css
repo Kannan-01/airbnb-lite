@@ -1,0 +1,10 @@
+h1{
+color: rgb(255, 56, 92);
+}
+.form-control::placeholder {
+    color: #999;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border: 1px solid rgb(34, 34, 34) !important;
+  }
