@@ -17,9 +17,25 @@
 }
 .card {
   width: 373px;
-  height: 450px;
+  /* height: 450px; */
   border: none;
   border-radius: 11px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.form-control,
+.form-select:focus {
+  box-shadow: none;
+  border: 1px solid black !important;
+}
+.form-control,
+.form-select::placeholder {
+  color: #999;
+}
+.col-6 {
+  margin-bottom: 20px;
+}
+.btn {
+  background-color: #ff385c;
+  color: white;
 }

@@ -8,4 +8,4 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
-}
+  }

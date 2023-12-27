@@ -26,7 +26,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     RegisterComponent,
     HomeComponent,
     HostComponent,
-    ViewComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
