@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HostComponent {
   brandlogo: string = './assets/images/airbnb.png';
+  image: any = '';
   hostForm = this.fb.group({
     title: ['', [Validators.required]],
     state: ['', [Validators.required]],
@@ -24,6 +25,7 @@ export class HostComponent {
     private api: ApiService,
     private router: Router
   ) {}
+
   host() {
     if (this.hostForm.valid) {
       const title = this.hostForm.value.title;
@@ -44,9 +46,34 @@ export class HostComponent {
         description,
         category,
       };
+      this.api.hostAPI(property).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          
+          alert(`Hosted succesfully !`);
+          this.router.navigateByUrl('');
+          this.hostForm.reset();
+        },
+        error: (err: any) => {
+          alert(err.error);
+          console.log(err.error);
+          this.hostForm.reset();
+        },
+      });
       console.log(property);
     } else {
       alert('Invalid form');
     }
+  }
+
+  getFile(event: any) {
+    let file = event.target.files[0];
+    console.log(file);
+    let fr = new FileReader();
+    fr.readAsDataURL(file);
+    fr.onload = (event: any) => {
+      console.log(event.target.result);
+      this.hostForm.get('image')?.setValue(event.target.result);
+    };
   }
 }

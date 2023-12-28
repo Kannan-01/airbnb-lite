@@ -140,6 +140,7 @@
                 aria-describedby="emailHelp"
                 placeholder="Enter your city"
                 formControlName="image"
+                (change)="getFile($event)"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
