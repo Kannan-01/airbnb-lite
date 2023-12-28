@@ -1,26 +1,37 @@
-.card
-{
-    width: 322px;
-    height: 408px;
-    border: 0;
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgb(253, 196, 207) !important;
 }
-.cardBody{
-    margin-top: 15px;
+.form-control::placeholder {
+  color: #999;
+}
+.dropdown-menu {
+  min-width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 15px;
+  line-height: 30px;
+}
+.navDrop{
+    display: none;
 }
 
-.title{
-    font-size: 15px;
-    font-weight: 600;
-    color: rgb(34, 34, 34);
+@media (max-width: 500px) {
+  .container-fluid {
+    padding: 0px 30px !important;
+  }
+  .MobileUser{
+    display: none;
+  }
+  .searchBar{
+    padding: 0px 15px;
+  }
+  .navDrop{
+    display: block;
 }
-
-.overview{
-font-size: 14px;
-text-align: justify;
+.host{
+    display: none;
 }
-
-.rate{
-    font-size: 15px;
-    font-weight: 600;
-    color: rgb(34, 34, 34);
 }

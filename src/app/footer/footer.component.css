@@ -13,3 +13,9 @@ footer a:hover {
 .heads {
   margin-top: 15px;
 }
+@media (max-width: 500px) {
+  .container-fluid {
+    padding: 0px 30px !important;
+    margin-bottom: 220px;
+  }
+}

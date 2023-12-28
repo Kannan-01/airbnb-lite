@@ -1,67 +1,99 @@
 <nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid #ccc">
   <div style="padding: 0px 80px" class="container-fluid">
-    <a class="navbar-brand" routerLink="">
-      <img width="118" height="64" [src]="brandlogo" alt="" />
-    </a>
-    <div class="d-flex justify-content-center align-items-center">
-      <input
-        style="height: 2.8rem; border-radius: 44px; width: 40rem"
-        type="text"
-        class="form-control"
-        placeholder="what type are you looking for ?"
-      />
+    <a class="navbar-brand" routerLink=""
+      ><img width="118" height="64" [src]="brandlogo" alt=""
+    /></a>
+
+    <!-- collapse -->
+    <div class="border-0 text-dark btn">
       <div
-        style="
-          margin-left: -40px;
-          width: 2rem;
-          height: 2rem;
-          background-color: rgb(255, 56, 92);
-          color: white;
-        "
-        class="rounded-circle d-flex justify-content-center align-items-center btn"
+        class="navbar-toggler rounded-circle"
+        style="width: 40px; height: 40px; background-color: rgb(255, 56, 92)"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i style="color: white" class="fa-solid fa-user py-1"></i>
       </div>
     </div>
-    <div
-      class="d-flex justify-content-center align-items-center navbar-nav flex-wrap dropCase"
-    >
-      <div class="nav-item">
-        <a class="nav-link btn host" style="color: rgb(34, 34, 34); font-size: 14px" routerLink="/host"
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navDrop">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Login</li>
+          <li class="list-group-item">Register</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item"></li>
+        </ul>
+      </div>
+      <form class="d-flex ms-auto me-5" role="search">
+        <div class="d-flex justify-content-center align-items-center searchBar">
+          <input
+            class="form-control me-2"
+            style="height: 2.8rem; width: 20rem; border-radius: 44px"
+            type="search"
+            placeholder="what type are you looking for ?"
+            aria-label="Search"
+          />
+          <button
+            style="
+              margin-left: -50px;
+              width: 2rem;
+              height: 2rem;
+              background-color: rgb(255, 56, 92);
+              color: white;
+            "
+            class="btn rounded-circle d-flex justify-content-center align-items-center"
+            type="submit"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+      <div class="nav-item host me-4">
+        <a
+          class="nav-link btn host"
+          style="color: rgb(34, 34, 34); font-size: 14px"
+          routerLink="/host"
           >Airbnb your home</a
         >
-              </div>
-      <li class="nav-item dropdown">
-        <div
-          class="border-0 text-dark btn"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
+      </div>
+      <ul class="navbar-nav mb-2 mb-lg-0 MobileUser">
+        <li class="nav-item dropdown">
           <div
-            style="
-              width: 40px;
-              height: 40px;
-              background-color: rgb(255, 56, 92);
-            "
-            class="rounded-circle"
+            class="border-0 text-dark btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background-color: rgb(255, 56, 92);
+              "
+              class="rounded-circle"
+            >
+              <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
+            </div>
+            <!-- <div style="width: 40px; height: 40px" class="rounded-circle">
+              <img
+                style="width: 100%; object-fit: cover"
+                src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-rouge.png"
+                alt=""
+              />
+            </div> -->
           </div>
-          <!-- <div style="width: 40px; height: 40px" class="rounded-circle">
-            <img
-              style="width: 100%; object-fit: cover"
-              src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-rouge.png"
-              alt=""
-            />
-          </div> -->
-        </div>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" routerLink="/login">Login</a></li>
-          <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
-          <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item">Something else here</a></li>
-        </ul>
-      </li>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+            <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

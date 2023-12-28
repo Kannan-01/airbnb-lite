@@ -1,0 +1,25 @@
+.card {
+    width: 322px;
+    height: 408px;
+    border: 0;
+  }
+  .cardBody {
+    margin-top: 15px;
+  }
+  
+  .title {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+  }
+  
+  .overview {
+    font-size: 14px;
+    text-align: justify;
+  }
+  
+  .rate {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+  }
