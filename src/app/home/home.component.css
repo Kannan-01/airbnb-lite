@@ -1,10 +1,16 @@
+h1 {
+  color: rgb(255, 56, 92);
+}
+
 .form-control:focus {
   box-shadow: none;
   border: 1px solid rgb(253, 196, 207) !important;
 }
+
 .form-control::placeholder {
   color: #999;
 }
+
 .dropdown-menu {
   min-width: 250px;
   max-height: 300px;
@@ -14,24 +20,28 @@
   font-size: 15px;
   line-height: 30px;
 }
-.navDrop{
-    display: none;
+
+.navDrop {
+  display: none;
+}
+
+.custom-modal .modal-dialog {
+  max-width: 570px;
+  margin: auto;
 }
 
 @media (max-width: 500px) {
   .container-fluid {
     padding: 0px 30px !important;
   }
-  .MobileUser{
+  .MobileUser {
     display: none;
   }
-  .searchBar{
-    padding: 0px 15px;
+  .navDrop {
+    display: contents;
+    width: 200px;
   }
-  .navDrop{
-    display: block;
-}
-.host{
+  .host {
     display: none;
-}
+  }
 }

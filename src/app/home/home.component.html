@@ -22,15 +22,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navDrop">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Login</li>
-          <li class="list-group-item">Register</li>
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
           <li class="list-group-item">A third item</li>
           <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item"></li>
+          <li class="list-group-item">And a fifth one</li>
         </ul>
       </div>
       <form class="d-flex ms-auto me-5" role="search">
-        <div class="d-flex justify-content-center align-items-center searchBar">
+        <div class="d-flex justify-content-center align-items-center">
           <input
             class="form-control me-2"
             style="height: 2.8rem; width: 20rem; border-radius: 44px"
@@ -87,8 +87,22 @@
             </div> -->
           </div>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
-            <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                >Login</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
+                >Sign up</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item">Something else here</a></li>
           </ul>
@@ -100,3 +114,267 @@
 <!-- cards section -->
 
 <app-products></app-products>
+<!-- Button trigger modal -->
+
+<!--Login Modal -->
+<div
+  class="modal fade custom-modal"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="text-center">Login</h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-4">
+        <h1 style="font-size: 22px" id="exampleModalLabel">
+          <span class="text-dark">Welcome to </span>
+          <span class="fw-bolder">Airbnb</span>
+        </h1>
+        <!-- form area -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Email address"
+              formControlName="email"
+              name="email"
+            />
+            <label for="floatingInput">Email address</label>
+          </div>
+          <!-- invalid input error message -->
+          <div
+            *ngIf="
+              this.loginForm.get('email')?.errors &&
+              this.loginForm.get('email')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid email
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Password"
+              name="password"
+              formControlName="password"
+            />
+            <label for="floatingInput">Password</label>
+          </div>
+          <!-- invalid input error message -->
+
+          <div
+            *ngIf="
+              this.loginForm.get('password')?.errors &&
+              this.loginForm.get('password')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid password
+          </div>
+          <div class="d-grid">
+            <button
+              class="btn rounded text-white"
+              style="background-color: #ff385c"
+              type="submit"
+            >
+              login
+            </button>
+            <div class="text-center mt-4">
+              <p>
+                New user ?
+                <a
+                  style="color: #ff385c; cursor: pointer"
+                  class="text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#registerModal"
+                  >register here</a
+                >
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- register Modal -->
+<div
+  class="modal fade custom-modal"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="text-center">Sign Up</h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-4">
+        <h1 style="font-size: 22px" id="exampleModalLabel">
+          <span class="text-dark">Welcome to </span>
+          <span class="fw-bolder">Airbnb</span>
+        </h1>
+        <!-- form area -->
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <!-- first name -->
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="First name"
+              formControlName="fname"
+              name="fname"
+            />
+            <label for="floatingInput">First name</label>
+          </div>
+          <!-- last name -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Last name"
+              formControlName="lname"
+              name="lname"
+              aria-describedby="nameHelp"
+            />
+            <label for="floatingInput">Last name</label>
+            <div id="nameHelp" class="form-text">
+              Make sure it matches the name on your government ID.
+            </div>
+          </div>
+          <!-- invalid input error message -->
+          <div
+            *ngIf="
+              this.registerForm.get('lname')?.errors &&
+              this.registerForm.get('lname')?.touched ||
+              this.registerForm.get('fname')?.errors &&
+              this.registerForm.get('fname')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid name
+          </div>
+          <!-- date of birth -->
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Date of birth"
+              formControlName="dob"
+              name="dob"
+              aria-describedby="dobHelp"
+            />
+            <label for="floatingInput">Date of birth</label>
+            <div id="dobHelp" class="form-text">
+              To sign up you need to be atleast 18.
+            </div>
+          </div>
+          <!-- invalid input error message -->
+          <div
+            *ngIf="
+              this.registerForm.get('dob')?.errors &&
+              this.registerForm.get('dob')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid dob
+          </div>
+          <!-- email -->
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Email address"
+              formControlName="email"
+              name="email"
+              aria-describedby="emailHelp"
+            />
+            <label for="floatingInput">Email address</label>
+            <div id="emailHelp" class="form-text">
+              We'll email you trip confirmations and receipts.
+            </div>
+          </div>
+          <!-- invalid input error message -->
+          <div
+            *ngIf="
+              this.registerForm.get('email')?.errors &&
+              this.registerForm.get('email')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid email
+          </div>
+          <!-- password -->
+          <div class="form-floating mb-4">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Password"
+              name="password"
+              formControlName="password"
+            />
+            <label for="floatingInput">Password</label>
+          </div>
+          <!-- invalid input error message -->
+          <div
+            *ngIf="
+              this.registerForm.get('password')?.errors &&
+              this.registerForm.get('password')?.touched
+            "
+            class="mb-2 text-danger"
+          >
+            invalid password
+          </div>
+          <div class="d-grid">
+            <button
+              class="btn rounded text-white"
+              style="background-color: #ff385c"
+              type="submit"
+            >
+              Sign up
+            </button>
+            <div class="text-center mt-4">
+              <p>
+                Already registered ?
+                <a
+                  style="color: #ff385c; cursor: pointer"
+                  class="text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                  >login</a
+                >
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

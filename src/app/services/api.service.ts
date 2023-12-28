@@ -9,4 +9,7 @@ export class ApiService {
   loginAPI(user: any) {
     return this.http.post(`${this.SERVER_URL}/login`, user);
   }
+  registerAPI(user: any) {
+    return this.http.post(`${this.SERVER_URL}/register`, user);
+  }
 }
