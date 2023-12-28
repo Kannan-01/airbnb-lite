@@ -20,9 +20,9 @@
       </div>
     </div>
     <div class="col-lg-6 col-sm-12">
-      <form>
+      <form [formGroup]="hostForm" (ngSubmit)="host()">
         <div class="row">
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input
@@ -31,6 +31,7 @@
                 id="title"
                 aria-describedby="emailHelp"
                 placeholder="Enter your title here"
+                formControlName="title"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -45,6 +46,7 @@
                 id="district"
                 aria-describedby="emailHelp"
                 placeholder="Enter your district"
+                formControlName="district"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -59,6 +61,7 @@
                 id="price"
                 aria-describedby="emailHelp"
                 placeholder="₹ price per night"
+                formControlName="price"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -66,10 +69,10 @@
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <div class="mb-3">
               <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state">
+              <select class="form-select" id="state" formControlName="state">
                 <option value="" selected disabled>Select your state</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -121,6 +124,7 @@
                 id="city"
                 aria-describedby="emailHelp"
                 placeholder="Enter your city"
+                formControlName="city"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -135,6 +139,7 @@
                 id="city"
                 aria-describedby="emailHelp"
                 placeholder="Enter your city"
+                formControlName="image"
               />
               <!-- <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -149,94 +154,41 @@
               class="form-control"
               id="description"
               aria-describedby="emailHelp"
-              style="height: 100px;"
+              style="height: 100px"
+              formControlName="description"
             >
             </textarea>
             <div id="emailHelp" class="form-text">
               Give a brief description about your place.
             </div>
           </div>
-          <label class="mb-3">Categories:</label>
-          <div class="mb-3 row row-cols-3 px-3">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name>
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
-
+          <div class="mb-3">
+            <label for="category" class="form-label">Categories</label>
+            <select formControlName="category" class="form-select" id="category">
+              <option value="" selected disabled>Select a category</option>
+              <option value="Normal House">Normal House</option>
+              <option value="Lakefront">Lakefront</option>
+              <option value="Islands">Islands</option>
+              <option value="Beachfront">Beachfront</option>
+              <option value="Village Area">Village Area</option>
+              <option value="City Area">City Area</option>
+              <option value="Mansions">Mansions</option>
+              <option value="Apartment">Apartment</option>
+              <option value="House Boats">House Boats</option>
+              <option value="Tiny Homes">Tiny Homes</option>
+              <option value="A-frames">A-frames</option>
+              <option value="Rooms">Rooms</option>
+            </select>
           </div>
+        </div>
+        <div class="mt-4">
+          <button
+            class="btn rounded text-white form-control"
+            style="background-color: #ff385c; border: none !important;"
+            type="submit"
+          >
+            Host your home
+          </button>
         </div>
       </form>
     </div>
