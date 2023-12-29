@@ -49,13 +49,13 @@ export class HostComponent {
       this.api.hostAPI(property).subscribe({
         next: (res: any) => {
           console.log(res);
-          
+
           alert(`Hosted succesfully !`);
           this.router.navigateByUrl('');
           this.hostForm.reset();
         },
         error: (err: any) => {
-          alert(err.error);
+          // alert(err.error);
           console.log(err.error);
           this.hostForm.reset();
         },

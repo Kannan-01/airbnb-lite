@@ -1,3 +1,14 @@
 h1 {
-    color: rgb(255, 56, 92);
-  }
+  color: rgb(255, 56, 92);
+}
+.profile {
+  width: 200px;
+  height: 200px;
+  border-radius: 55px;
+}
+.profile img {
+  width: 200px;
+  height: 200px;
+  border-radius: 55%;
+  object-fit: cover;
+}

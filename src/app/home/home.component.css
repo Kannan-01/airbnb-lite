@@ -25,6 +25,12 @@ h1 {
   display: none;
 }
 
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
 .custom-modal .modal-dialog {
   max-width: 570px;
   margin: auto;
