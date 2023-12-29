@@ -14,9 +14,7 @@
   font-size: 15px;
   line-height: 30px;
 }
-.navDrop{
-    display: none;
-}
+
 .navbar{
   position: sticky;
   top: 0;
@@ -28,17 +26,16 @@
   .container-fluid {
     padding: 0px 30px !important;
   }
-  .MobileUser{
+  .host {
     display: none;
   }
-  .searchBar{
-    padding: 0px 15px;
+  .navbar{
+    position: relative;
   }
-  .navDrop{
-    display: block;
-}
-.host{
-    display: none;
-}
+  .responsive{
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
 }
 

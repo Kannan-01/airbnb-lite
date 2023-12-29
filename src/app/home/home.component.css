@@ -21,10 +21,6 @@ h1 {
   line-height: 30px;
 }
 
-.navDrop {
-  display: none;
-}
-
 .navbar{
   position: sticky;
   top: 0;
@@ -40,14 +36,15 @@ h1 {
   .container-fluid {
     padding: 0px 30px !important;
   }
-  .MobileUser {
-    display: none;
-  }
-  .navDrop {
-    display: contents;
-    width: 200px;
-  }
   .host {
     display: none;
+  }
+  .navbar{
+    position: relative;
+  }
+  .responsive{
+    position: absolute;
+    right: 0;
+    top: 20px;
   }
 }
