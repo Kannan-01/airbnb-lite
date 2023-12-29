@@ -1,10 +1,15 @@
 <app-header></app-header>
-<div class="container-fluid" style="padding: 0px 80px">
-  <div class="mt-4 mb-3"><h3>Hikkaduva, Sri Lanka</h3></div>
+<div style="width: 100%; height: 90vh; display: flex; align-items: center; justify-content: center;" *ngIf="loading==true">
+  <div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div class="container-fluid" style="padding: 0px 80px" *ngIf="loading==false">
+  <div class="mt-4 mb-3"><h3 class="text-capitalize">{{property.title}}</h3></div>
   
   <div class="imageBanner">
     <img
-      src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"
+      [src]=property.image
       alt=""
       style="background-repeat: no-repeat;"
     />
@@ -17,7 +22,7 @@
           <img
             style="width: 100%; object-fit: cover"
             src="https://a0.muscache.com/im/pictures/user/d069a7f2-54b5-479f-8e88-dc58a27e1e18.jpg?im_w=240"
-            alt=""
+            alt="loading"
             class="rounded-circle"
           />
         </div>
@@ -29,25 +34,19 @@
       </div>
       <hr />
       <div>
-        <h5>
+        <h5 class="text-capitalize">
           <span class="me-2"
             ><i class="fa-solid fa-location-dot text-danger"></i></span
-          >Aroor, Alappuzha , Kerala
+          >{{property.city}}, {{property.district}} , {{property.state}}
         </h5>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam beatae
-        ducimus rerum in? Iure voluptate eveniet nemo, repudiandae minima ad
-        aliquam odio quaerat, possimus at, in molestias maiores cupiditate
-        assumenda. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        Perspiciatis neque eos quidem ipsam obcaecati cupiditate officiis sint
-        optio, rem voluptate, aut voluptatum vero corporis repudiandae ullam
-        sequi quisquam at? Magni.
+        {{property.description}}
         <br />
         <span># Beach Front</span>
       </div>
     </div>
     <div class="col-lg-5 col-sm-12">
       <div class="card ms-auto p-4">
-        <h4>₹5000 <span class="fs-5 text-muted">night</span></h4>
+        <h4>₹{{property.price}} <span class="fs-5 text-muted">night</span></h4>
         <div
           class="row border border-2 mt-2 m-1"
           style="border-radius: 11px; border: 1px solid black !important"

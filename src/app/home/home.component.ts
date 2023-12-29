@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
-
+  loggedIn: boolean = false;
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
@@ -29,6 +29,18 @@ export class HomeComponent {
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.checkLogged();
+  }
+
+  checkLogged() {
+    if (sessionStorage.getItem('token')) {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
+  }
+
   login() {
     if (this.loginForm.valid) {
       const password = this.loginForm.value.password;
@@ -41,6 +53,7 @@ export class HomeComponent {
           sessionStorage.setItem('firstName', res.existingUser.firstName);
           sessionStorage.setItem('token', res.token);
           this.router.navigateByUrl('/');
+          this.checkLogged();
           this.loginForm.reset();
         },
         error: (err: any) => {
@@ -51,7 +64,12 @@ export class HomeComponent {
       alert('Invalid form');
     }
   }
-
+  logout(){
+    sessionStorage.removeItem("firstName")
+    sessionStorage.removeItem("token")
+    this.router.navigateByUrl("")
+    this.checkLogged()
+  }
   register() {
     if (this.registerForm.valid) {
       const firstName = this.registerForm.value.fname;

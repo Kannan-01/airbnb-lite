@@ -87,10 +87,20 @@
             </div> -->
           </div>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
-            <li><a class="dropdown-item">Sign up</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="/wishlists" >Wishlists</a>
+            </li>
+            <li >
+              <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/account">Account details</a>
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item">Something else here</a></li>
+            <li (click)="logout()">
+              <a class="dropdown-item text-danger">Logout</a>
+            </li>
           </ul>
         </li>
       </ul>

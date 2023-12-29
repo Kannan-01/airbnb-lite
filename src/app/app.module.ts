@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
+import { WishlistsComponent } from './wishlists/wishlists.component';
+import { AccountComponent } from './account/account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { ProductsComponent } from './products/products.component';
     HostComponent,
     ViewComponent,
     ProductsComponent,
+    WishlistsComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,

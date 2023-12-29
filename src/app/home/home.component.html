@@ -92,7 +92,9 @@
                 class="dropdown-item"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
+                *ngIf="loggedIn == false"
                 >Login</a
+                
               >
             </li>
             <li>
@@ -100,11 +102,27 @@
                 class="dropdown-item"
                 data-bs-toggle="modal"
                 data-bs-target="#registerModal"
+                *ngIf="loggedIn == false"
                 >Sign up</a
               >
             </li>
+            <li *ngIf="loggedIn == true">
+              <a class="dropdown-item" routerLink="/wishlists">Wishlists</a>
+            </li>
+            <li *ngIf="loggedIn == true">
+              <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
+            </li>
+
+            <li *ngIf="loggedIn == true">
+              <a class="dropdown-item" routerLink="/account">Account details</a>
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item">Something else here</a></li>
+            <li *ngIf="loggedIn == true" (click)="logout()">
+              <a class="dropdown-item text-danger">Logout</a>
+            </li>
+            <li *ngIf="loggedIn == false">
+              <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -269,10 +287,10 @@
           <!-- invalid input error message -->
           <div
             *ngIf="
-              this.registerForm.get('lname')?.errors &&
-              this.registerForm.get('lname')?.touched ||
-              this.registerForm.get('fname')?.errors &&
-              this.registerForm.get('fname')?.touched
+              (this.registerForm.get('lname')?.errors &&
+                this.registerForm.get('lname')?.touched) ||
+              (this.registerForm.get('fname')?.errors &&
+                this.registerForm.get('fname')?.touched)
             "
             class="mb-2 text-danger"
           >
