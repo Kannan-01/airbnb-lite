@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  SERVER_URL = 'https://property-server-090y.onrender.com';
+  SERVER_URL = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
 
   loginAPI(user: any) {
@@ -38,6 +38,7 @@ export class ApiService {
     return this.http.get(`${this.SERVER_URL}/view/${id}`);
   }
 
+  // wishlist API's
   addToWishlistAPI(property: any) {
     return this.http.post(
       `${this.SERVER_URL}/wishlist`,
@@ -51,10 +52,25 @@ export class ApiService {
       this.appendTokenToHeader()
     );
   }
-  
+
   deleteWishlistItem(id: any) {
     return this.http.delete(
       `${this.SERVER_URL}/wishlist/delete/${id}`,
+      this.appendTokenToHeader()
+    );
+  }
+
+  // Account API's
+  accountDetails() {
+    return this.http.get(
+      `${this.SERVER_URL}/account`,
+      this.appendTokenToHeader()
+    );
+  }
+  
+  updateAccount(update:any) {
+    return this.http.put(
+      `${this.SERVER_URL}/update`,update,
       this.appendTokenToHeader()
     );
   }

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   loggedIn: boolean = false;
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
+    password: ['', [Validators.required]],
   });
 
   registerForm = this.fb.group({

@@ -1,6 +1,15 @@
 h1 {
   color: rgb(255, 56, 92);
 }
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgb(253, 196, 207) !important;
+}
+
+.form-control::placeholder {
+  color: #999;
+}
 .profile {
   width: 200px;
   height: 200px;
@@ -11,4 +20,14 @@ h1 {
   height: 200px;
   border-radius: 55%;
   object-fit: cover;
+}
+
+@media (max-width: 500px) {
+  .container-fluid {
+    padding: 0px 30px !important;
+  }
+  .responsive {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
