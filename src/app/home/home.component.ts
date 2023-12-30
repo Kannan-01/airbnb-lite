@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    private toaster:ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
+    document.getElementById('loginModalClose')?.click();
     if (this.loginForm.valid) {
       const password = this.loginForm.value.password;
       const email = this.loginForm.value.email;
@@ -49,23 +52,21 @@ export class HomeComponent implements OnInit {
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
           console.log(res);
-          alert(`${res.existingUser.firstName} login successful !`);
-          sessionStorage.setItem('firstName', res.existingUser.firstName);
+          this.toaster.showSuccess(`${res.existingUser.firstName} login successful !`);
           sessionStorage.setItem('token', res.token);
           this.router.navigateByUrl('/');
           this.checkLogged();
           this.loginForm.reset();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
         },
       });
     } else {
-      alert('Invalid form');
+      this.toaster.showWarning('Invalid form');
     }
   }
   logout(){
-    sessionStorage.removeItem("firstName")
     sessionStorage.removeItem("token")
     this.router.navigateByUrl("")
     this.checkLogged()
@@ -81,19 +82,20 @@ export class HomeComponent implements OnInit {
 
       this.api.registerAPI(user).subscribe({
         next: (res: any) => {
-          alert(`${res.firstName} registered succesfully !`);
+          document.getElementById('registerModalClose')?.click();
+          this.toaster.showSuccess(`${res.firstName} registered succesfully !`);
           this.router.navigateByUrl('/user/login');
           this.registerForm.reset();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           console.log(err.error);
 
           this.registerForm.reset();
         },
       });
     } else {
-      alert('Invalid form');
+      this.toaster.showWarning('Invalid form');
     }
   }
 }

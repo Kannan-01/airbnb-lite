@@ -21,6 +21,7 @@
     <div
       class="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center flex-column responsive"
     >
+      <!-- profile image area -->
       <label>
         <div *ngIf="account.userImage">
           <input
@@ -48,6 +49,7 @@
           </div>
         </div>
       </label>
+      <!-- name and password -->
       <h1 class="fw-bolder mt-4 text-capitalize">
         {{ account.firstName }}
         <span class="text-dark">{{ account.lastName }}</span>
@@ -62,9 +64,11 @@
         </button>
       </div>
     </div>
+
     <div class="col-sm-12 col-lg-6">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
+          <!-- name -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Legal name:</div>
@@ -84,6 +88,7 @@
           </div>
         </li>
         <li class="list-group-item mt-2">
+          <!-- email -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Email address:</div>
@@ -102,6 +107,7 @@
           </div>
         </li>
         <li class="list-group-item mt-2">
+          <!-- phone number -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Phone number:</div>
@@ -119,10 +125,11 @@
           </div>
         </li>
         <li class="list-group-item mt-2">
+          <!-- government id -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Government ID:</div>
-              <div class="small" *ngIf="!account.idProof">Not provided</div>
+              <div class="small" *ngIf="!account.idProof">Not uploaded</div>
               <div class="small" *ngIf="account.idProof">Uploaded</div>
             </div>
             <div>
@@ -142,6 +149,7 @@
           </div>
         </li>
         <li class="list-group-item mt-2">
+          <!-- address -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Address:</div>
@@ -171,6 +179,7 @@
           </div>
         </li>
         <li class="list-group-item mt-2">
+          <!-- emergency number -->
           <div class="d-flex justify-content-between p-2">
             <div>
               <div>Emergency Number:</div>
@@ -566,36 +575,50 @@
                 <form [formGroup]="updateForm" (ngSubmit)="updatePassword()">
                   <div class="form-floating mb-3">
                     <input
-                      type="text"
+                      type="password"
+                      class="form-control"
+                      id="oldpassword"
+                      placeholder="Enter your old password"
+                      formControlName="oldpassword"
+                    />
+                    <label for="oldpassword">Enter your old password</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
                       class="form-control"
                       id="password"
                       placeholder="Enter your password"
                       formControlName="password"
                       aria-describedby="passHelp"
                     />
+                    <label for="password">Enter your password</label>
                   </div>
 
                   <div class="form-floating mb-3">
                     <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       id="cpassword"
                       placeholder="Confirm your password"
                       formControlName="cpassword"
                       aria-describedby="passHelp"
                     />
+                    <label for="password">Confirm your password</label>
+
                     <div
-                    id="passHelp"
-                    *ngIf="
-                      (this.updateForm.get('password')?.errors &&
-                        this.updateForm.get('password')?.touched) ||
-                      (this.updateForm.get('cpassword')?.errors &&
-                        this.updateForm.get('cpassword')?.touched)
-                    "
-                    class="form-text text-danger"
-                  >
-                    Enter your passwords correctly !
-                  </div>
+                      id="passHelp"
+                      *ngIf="
+                        (this.updateForm.get('password')?.errors &&
+                          this.updateForm.get('password')?.touched) ||
+                        (this.updateForm.get('cpassword')?.errors &&
+                          this.updateForm.get('cpassword')?.touched)
+                      "
+                      class="form-text text-danger"
+                    >
+                      Enter your passwords correctly !
+                    </div>
                   </div>
                   <div class="d-grid">
                     <button

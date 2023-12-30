@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster.service';
 @Component({
   selector: 'app-host',
   templateUrl: './host.component.html',
@@ -21,6 +22,7 @@ export class HostComponent {
     category: ['', [Validators.required]],
   });
   constructor(
+    private toaster: ToasterService,
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router
@@ -50,19 +52,19 @@ export class HostComponent {
         next: (res: any) => {
           console.log(res);
 
-          alert(`Hosted succesfully !`);
+          this.toaster.showSuccess(`Hosted succesfully !`);
           this.router.navigateByUrl('');
           this.hostForm.reset();
         },
         error: (err: any) => {
-          // alert(err.error);
+          this.toaster.showError(err.error);
           console.log(err.error);
           this.hostForm.reset();
         },
       });
       console.log(property);
     } else {
-      alert('Invalid form');
+      this.toaster.showWarning('Invalid form');
     }
   }
 

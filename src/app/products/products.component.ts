@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +10,7 @@ import { ApiService } from '../services/api.service';
 export class ProductsComponent implements OnInit {
   loading: boolean = false;
   allProperties: any = [];
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService,private toaster:ToasterService) {}
   ngOnInit(): void {
     this.loading = true;
     this.api.propertiesAPI().subscribe((res) => {
@@ -25,15 +26,15 @@ export class ProductsComponent implements OnInit {
       this.api.addToWishlistAPI(property).subscribe({
         next: (res: any) => {
           this.loading = false;
-          alert(`product added to wishlist !`);
+          this.toaster.showSuccess(`product added to wishlist !`);
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           console.log(err.error);
         },
       });
     } else {
-      alert('Login to continue ');
+      this.toaster.showWarning('Login to continue ');
     }
   }
   

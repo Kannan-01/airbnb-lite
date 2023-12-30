@@ -6,6 +6,7 @@ import { ViewComponent } from './view/view.component';
 import { authGuard } from './guards/auth.guard';
 import { WishlistsComponent } from './wishlists/wishlists.component';
 import { AccountComponent } from './account/account.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,9 @@ const routes: Routes = [
   },
   {
     path:"host",component:HostComponent,canActivate:[authGuard]
+  },
+  {
+    path:"payment",component:PaymentComponent,canActivate:[authGuard]
   },
   {
     path:"wishlists",component:WishlistsComponent,canActivate:[authGuard]

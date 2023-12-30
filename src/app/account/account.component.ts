@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-account',
@@ -18,12 +19,13 @@ export class AccountComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     cpassword: ['', [Validators.required]],
+    oldpassword: ['', [Validators.required]],
     phone: ['', [Validators.required, Validators.pattern('[0-9]*')]],
     emergency: ['', [Validators.pattern('[0-9]*')]],
     address: ['', [Validators.pattern('[a-zA-Z0-9]*')]],
   });
 
-  constructor(private api: ApiService, private fb: FormBuilder) {}
+  constructor(private api: ApiService, private fb: FormBuilder,private toaster:ToasterService) {}
 
   ngOnInit(): void {
     this.accountDetails();
@@ -50,17 +52,17 @@ export class AccountComponent implements OnInit {
       const update = { email };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Email updated !');
+          this.toaster.showSuccess('Email updated !');
           this.updateForm.reset();
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
     } else {
-      alert('Form invalid');
+      this.toaster.showWarning('Form invalid');
     }
   }
 
@@ -71,17 +73,17 @@ export class AccountComponent implements OnInit {
       const update = { phoneNumber };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Phone updated !');
+          this.toaster.showSuccess('Phone updated !');
           this.updateForm.reset();
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
     } else {
-      alert('Form invalid');
+      this.toaster.showWarning('Form invalid');
     }
   }
 
@@ -105,16 +107,16 @@ export class AccountComponent implements OnInit {
       const update = { userImage };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Profile image updated!');
+          this.toaster.showSuccess('Profile image updated!');
           // this.loading = false;
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
         },
       });
     } else {
-      alert('Form invalid');
+      this.toaster.showWarning('Form invalid');
     }
   }
 
@@ -125,17 +127,17 @@ export class AccountComponent implements OnInit {
       const update = { emergencyNumber };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Emergency Number updated !');
+          this.toaster.showSuccess('Emergency Number updated !');
           this.updateForm.reset();
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
     } else {
-      alert('Form invalid');
+      this.toaster.showWarning('Form invalid');
     }
   }
 
@@ -146,17 +148,17 @@ export class AccountComponent implements OnInit {
       const update = { address };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Address updated !');
+          this.toaster.showSuccess('Address updated !');
           this.updateForm.reset();
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
     } else {
-      alert('Form invalid');
+      this.toaster.showWarning('Form invalid');
     }
   }
 
@@ -166,26 +168,32 @@ export class AccountComponent implements OnInit {
       this.updateForm.get('cpassword')?.valid
     ) {
       const password = this.updateForm.value.password;
-      const cpassword=this.updateForm.value.cpassword;
-      if(password==cpassword){
-        document.getElementById('passwordModalClose')?.click();
-        const update = { password };
-        this.api.updateAccount(update).subscribe({
-          next: (res: any) => {
-            alert('password updated !');
-            this.updateForm.reset();
-          },
-          error: (err: any) => {
-            alert(err.error);
-            this.updateForm.reset();
-          },
-        });
-      }
-      else{
-        alert("password do not match")
+      const cpassword = this.updateForm.value.cpassword;
+      const oldpassword = this.updateForm.value.oldpassword;
+
+      if (password == cpassword) {
+        if (oldpassword == this.account.password) {
+          document.getElementById('passwordModalClose')?.click();
+          const update = { password };
+          this.api.updateAccount(update).subscribe({
+            next: (res: any) => {
+              this.toaster.showSuccess('password updated !');
+              this.accountDetails();
+              this.updateForm.reset();
+            },
+            error: (err: any) => {
+              this.toaster.showError(err.error);
+              this.updateForm.reset();
+            },
+          });
+        } else {
+          this.toaster.showWarning("Old password doesn't match with our database !");
+        }
+      } else {
+        this.toaster.showWarning('password do not match');
       }
     } else {
-      alert('form invalid !');
+      this.toaster.showError('form invalid !');
     }
   }
 
@@ -196,11 +204,11 @@ export class AccountComponent implements OnInit {
       const update = { firstName };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Name updated !');
+          this.toaster.showSuccess('Name updated !');
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
@@ -210,11 +218,11 @@ export class AccountComponent implements OnInit {
       const update = { lastName };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Name updated !');
+          this.toaster.showSuccess('Name updated !');
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });
@@ -225,12 +233,12 @@ export class AccountComponent implements OnInit {
       const update = { firstName, lastName };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          alert('Name updated !');
+          this.toaster.showSuccess('Name updated !');
           this.updateForm.reset();
           this.accountDetails();
         },
         error: (err: any) => {
-          alert(err.error);
+          this.toaster.showError(err.error);
           this.updateForm.reset();
         },
       });

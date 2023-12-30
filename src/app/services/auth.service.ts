@@ -7,6 +7,6 @@ export class AuthService {
 
   constructor() { }
   isLogged(){
-    return !!sessionStorage.getItem("firstName")
+    return !!sessionStorage.getItem("token")
    }
 }

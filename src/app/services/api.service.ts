@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  SERVER_URL = 'http://localhost:3000';
+  SERVER_URL = 'https://property-server-090y.onrender.com';
   constructor(private http: HttpClient) {}
 
   loginAPI(user: any) {
@@ -74,4 +74,9 @@ export class ApiService {
       this.appendTokenToHeader()
     );
   }
+
+  hostDetails(userid: any) {
+    return this.http.get(`${this.SERVER_URL}/host/view/${userid}`);
+  }
+ 
 }

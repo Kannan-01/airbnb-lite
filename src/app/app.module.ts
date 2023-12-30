@@ -18,6 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
 import { WishlistsComponent } from './wishlists/wishlists.component';
 import { AccountComponent } from './account/account.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +33,7 @@ import { AccountComponent } from './account/account.component';
     ProductsComponent,
     WishlistsComponent,
     AccountComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,9 @@ import { AccountComponent } from './account/account.component';
     MatNativeDateModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent],
