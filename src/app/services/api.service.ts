@@ -84,11 +84,15 @@ export class ApiService {
     return this.http.get(`${this.SERVER_URL}/payment/${id}`);
   }
 
+  // hostings api's
   getHostings() {
     return this.http.get(
       `${this.SERVER_URL}/hostings`,
       this.appendTokenToHeader()
     );
   }
-  
+
+  deleteHostings(propertyId: any) {
+    return this.http.delete(`${this.SERVER_URL}/deleteProperty/${propertyId}`);
+  }
 }
