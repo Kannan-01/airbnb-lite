@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  SERVER_URL = 'https://property-server-090y.onrender.com';
+  SERVER_URL = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
 
   loginAPI(user: any) {
@@ -67,10 +67,11 @@ export class ApiService {
       this.appendTokenToHeader()
     );
   }
-  
-  updateAccount(update:any) {
+
+  updateAccount(update: any) {
     return this.http.put(
-      `${this.SERVER_URL}/update`,update,
+      `${this.SERVER_URL}/update`,
+      update,
       this.appendTokenToHeader()
     );
   }
@@ -78,5 +79,16 @@ export class ApiService {
   hostDetails(userid: any) {
     return this.http.get(`${this.SERVER_URL}/host/view/${userid}`);
   }
- 
+
+  viewPaymentAPI(id: any) {
+    return this.http.get(`${this.SERVER_URL}/payment/${id}`);
+  }
+
+  getHostings() {
+    return this.http.get(
+      `${this.SERVER_URL}/hostings`,
+      this.appendTokenToHeader()
+    );
+  }
+  
 }

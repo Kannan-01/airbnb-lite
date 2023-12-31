@@ -26,16 +26,14 @@
     <div class="col-lg-7 col-sm-12">
       <div class="d-flex align-items-center">
         <div class="profile">
-          <img
-            src="{{ host.userImage }}"
-            alt="loading"
-            class="profile"
-          />
+          <img src="{{ host.userImage }}" alt="loading" class="profile" />
         </div>
         <div class="ms-4 text-capitalize">
-          Hosted by {{host.firstName}}
+          Hosted by {{ host.firstName }}
           <br />
-          <span class="hostDetails">Contact number : {{host.phoneNumber}}.</span>
+          <span class="hostDetails"
+            >Contact number : {{ host.phoneNumber }}.</span
+          >
         </div>
       </div>
       <hr />
@@ -52,51 +50,88 @@
     </div>
     <div class="col-lg-5 col-sm-12">
       <div class="card ms-auto p-4">
-        <h4>
-          ₹{{ property.price }} <span class="fs-5 text-muted">night</span>
-        </h4>
-        <div
-          class="row mt-2"        >
-          <div class="col-6">
-            <label class="form-label small text-center">Check-in</label>
-            <input type="date" class="form-control" />
+        <form [formGroup]="reservationForm">
+          <h4>
+            ₹{{ property.price }} <span class="fs-5 text-muted">night</span>
+          </h4>
+          <div class="row mt-2">
+            <div class="col-6">
+              <label class="form-label small text-center">Check-in</label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="checkin"
+                (change)="checkinChanged($event)"
+              />
+            </div>
+            <div class="col-6">
+              <label class="form-label small">Checkout</label>
+              <input
+                type="date"
+                formControlName="checkout"
+                class="form-control"
+                (change)="checkinChanged($event)"
+              />
+            </div>
           </div>
-          <div class="col-6">
-            <label class="form-label small">Checkout</label>
-            <input type="date" class="form-control" />
+          <div class="mt-2 m-1">
+            <select class="form-select" formControlName="guests" id="state">
+              <option value="" selected disabled>No of guests</option>
+              <option value=" 1">1</option>
+              <option value="2 ">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
           </div>
-        </div>
-        <div class="mt-2 m-1">
-          <select
-            class="form-select"
-            id="state"
+          <button
+            type="submit"
+            (click)="calculate()"
+            class="btn mt-4 form-control"
+            *ngIf="!total"
           >
-            <option value="" selected disabled>No of guests</option>
-            <option value=" 1">1</option>
-            <option value="2 ">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-        </div>
-        <button class="btn mt-4" routerLink="/payment">Reserve</button>
-        <label class="text-center mt-2 small text-muted">You won't be charged yet !</label>
+            Check availability
+          </button>
+          <button
+            *ngIf="total"
+            type="submit"
+            class="btn mt-4 form-control"
+            routerLink="/payment/{{ property._id }}"
+          >
+            Reserve
+          </button>
+        </form>
 
-        <div class="d-flex justify-content-between mt-4 text-muted text-decoration-underline" style="font-size: 15px;">
-          <div>₹ 12000 x 5 nights</div>
-          <div>₹ 60000</div>
-        </div>
-        <div class="d-flex justify-content-between mt-1 text-muted text-decoration-underline" style="font-size: 15px;">
-          <div>Airbnb service fee</div>
-          <div>₹ 500</div>
-        </div>
-        <hr>
-        <div class="d-flex justify-content-between mt-1">
-          <div>Total before taxes</div>
-          <div>₹ 694883</div>
-        </div>
+        <div class="priceContainer" *ngIf="total">
+          <div>
+            <div class="text-center">
+              <label class="mt-2 small text-muted"
+                >You won't be charged yet !</label
+              >
+            </div>
+          </div>
+          <div
+            class="d-flex justify-content-between mt-4 text-muted text-decoration-underline"
+            style="font-size: 15px"
+          >
+            <div>₹ {{ property.price }} x {{ difference }}</div>
+            <div>₹ {{ price }}</div>
+          </div>
 
+          <div
+            class="d-flex justify-content-between mt-1 text-muted text-decoration-underline"
+            style="font-size: 15px"
+          >
+            <div>Airbnb service fee</div>
+            <div>₹ 500</div>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between mt-1">
+            <div>Total before taxes</div>
+            <div>₹ {{ total }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

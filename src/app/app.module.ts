@@ -22,6 +22,7 @@ import { AccountComponent } from './account/account.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaymentComponent } from './payment/payment.component';
+import { HostingsComponent } from './hostings/hostings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { PaymentComponent } from './payment/payment.component';
     WishlistsComponent,
     AccountComponent,
     PaymentComponent,
+    HostingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { PaymentComponent } from './payment/payment.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

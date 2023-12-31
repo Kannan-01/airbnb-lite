@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ToasterService } from '../services/toaster.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -8,11 +10,53 @@ import { ToasterService } from '../services/toaster.service';
 })
 export class PaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
+  price: any = '';
+  days: any = '';
+  totalWithoutTaxes: any = '';
+  taxes: any = '';
+  totalWithTax: any = '';
+  property: any = {};
+  checkin=sessionStorage.getItem('checkin');
+  checkout=sessionStorage.getItem('checkout');
   ngOnInit(): void {
+    this.route.params.subscribe((res: any) => {
+      const { id } = res;
+      this.api.viewPaymentAPI(id).subscribe({
+        next: (res: any) => {
+          this.property = res;
+        },
+        error(err: any) {
+          console.log(err.error);
+        },
+      });
+    });
     this.initConfig();
+    if (
+      sessionStorage.getItem('price') &&
+      sessionStorage.getItem('days') &&
+      sessionStorage.getItem('totalWithoutTaxes')
+    ) {
+      this.price = sessionStorage.getItem('price');
+      this.days = sessionStorage.getItem('days');
+      this.totalWithoutTaxes = sessionStorage.getItem('totalWithoutTaxes');
+    }
+    this.calculate();
   }
-constructor(private toaster:ToasterService){}
-   initConfig(): void {
+  constructor(
+    private toaster: ToasterService,
+    private route: ActivatedRoute,
+    private api: ApiService
+  ) {}
+
+  calculate() {
+    const price = this.totalWithoutTaxes;
+    const withoutTax: number = parseInt(price, 10);
+    console.log(withoutTax);
+    this.taxes = (withoutTax * 12) / 100;
+    this.totalWithTax = `${this.taxes + withoutTax}`;
+  }
+
+  initConfig(): void {
     this.payPalConfig = {
       currency: 'USD',
       clientId: 'sb',
@@ -23,11 +67,11 @@ constructor(private toaster:ToasterService){}
             {
               amount: {
                 currency_code: 'USD',
-                value: '9.99',
+                value: this.totalWithTax,
                 breakdown: {
                   item_total: {
                     currency_code: 'USD',
-                    value: '9.99',
+                    value: this.totalWithTax,
                   },
                 },
               },
@@ -47,7 +91,7 @@ constructor(private toaster:ToasterService){}
           data,
           actions
         );
-        actions.order.get().then((details:any) => {
+        actions.order.get().then((details: any) => {
           console.log(
             'onApprove - you can get full order details inside onApprove: ',
             details
@@ -59,15 +103,21 @@ constructor(private toaster:ToasterService){}
           'onClientAuthorization - you should probably inform your server about completed transaction at this point',
           data
         );
-        this.toaster.showSuccess("Your reservation was successfully Placed !")
+        this.toaster.showSuccess('Your reservation was successfully Placed !');
+        sessionStorage.setItem('checkin',"")
+        sessionStorage.setItem('checkout',"")
+        sessionStorage.setItem('totalWithoutTaxes',"")
+        sessionStorage.setItem('guests',"")
+        sessionStorage.setItem('price',"")
+        sessionStorage.setItem('days',"")
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        this.toaster.showWarning("Transaction Denied !")
+        this.toaster.showWarning('Transaction Denied !');
       },
       onError: (err) => {
         console.log('OnError', err);
-        this.toaster.showError("Transaction failed please try after sometime!")
+        this.toaster.showError('Transaction failed please try after sometime!');
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);

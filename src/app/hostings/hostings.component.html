@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
+  <h1 class="fw-bolder">Currently <span class="text-dark">Hosting</span></h1>
+  <hr class="mb-4" />
+  <div class="row">
+    <div
+      class="col-sm-12 col-lg-12 col-md-12 mb-3"
+      *ngFor="let property of hostings"
+    >
+      <div class="card p-3">
+        <div class="d-flex align-items-center">
+          <div class="profile">
+            <img
+              src="https://a0.muscache.com/im/pictures/f4843c9f-eeaa-4ffa-9aaf-ba32ed0c56c0.jpg?im_w=1200"
+              alt=""
+            />
+          </div>
+          <div>
+            <div class="ms-3">
+              <h4 class="fw-bold text-capitalize">
+                guruvayur heritage homestay
+              </h4>
+              # Manassery
+              <span class="small">
+                <i class="fa-solid fa-location-dot text-danger"></i>
+              </span>
+              Kerala , KOchi , India
+              <br />
+            </div>
+          </div>
+          <div class="fw-bold ms-auto me-4 text-danger">Cancel Hosting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

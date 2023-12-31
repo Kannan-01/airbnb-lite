@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
   loggedIn: boolean = false;
+
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -24,11 +25,12 @@ export class HomeComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
   });
+
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router,
-    private toaster:ToasterService
+    private toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +54,9 @@ export class HomeComponent implements OnInit {
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
           console.log(res);
-          this.toaster.showSuccess(`${res.existingUser.firstName} login successful !`);
+          this.toaster.showSuccess(
+            `${res.existingUser.firstName} login successful !`
+          );
           sessionStorage.setItem('token', res.token);
           this.router.navigateByUrl('/');
           this.checkLogged();
@@ -66,10 +70,10 @@ export class HomeComponent implements OnInit {
       this.toaster.showWarning('Invalid form');
     }
   }
-  logout(){
-    sessionStorage.removeItem("token")
-    this.router.navigateByUrl("")
-    this.checkLogged()
+  logout() {
+    sessionStorage.removeItem('token');
+    this.router.navigateByUrl('');
+    this.checkLogged();
   }
   register() {
     if (this.registerForm.valid) {

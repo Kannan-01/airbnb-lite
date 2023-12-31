@@ -11,7 +11,6 @@ import { ToasterService } from '../services/toaster.service';
 export class AccountComponent implements OnInit {
   account: any = {};
   image: any = '';
-  loading: boolean = false;
 
   updateForm = this.fb.group({
     fname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
@@ -32,11 +31,9 @@ export class AccountComponent implements OnInit {
   }
 
   accountDetails() {
-    this.loading = true;
     this.api.accountDetails().subscribe({
       next: (res: any) => {
         this.account = res;
-        this.loading = false;
         console.log(res);
       },
       error: (err: any) => {

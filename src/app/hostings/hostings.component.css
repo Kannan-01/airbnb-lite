@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(255, 56, 92);
+  }
+  .profile {
+      width: 7.75rem;
+      height: 6.625rem;
+      border-radius: 55px;
+    }
+    .profile img {
+      width: 7.75rem;
+      height: 6.625rem;
+      border-radius: 5%;
+      object-fit: cover;
+    }
+  @media (max-width: 500px) {
+    .container-fluid {
+      padding: 0px 30px !important;
+    }
+  }

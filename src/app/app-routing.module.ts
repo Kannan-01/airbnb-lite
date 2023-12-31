@@ -7,6 +7,7 @@ import { authGuard } from './guards/auth.guard';
 import { WishlistsComponent } from './wishlists/wishlists.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
+import { HostingsComponent } from './hostings/hostings.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     path:"host",component:HostComponent,canActivate:[authGuard]
   },
   {
-    path:"payment",component:PaymentComponent,canActivate:[authGuard]
+    path:"payment/:id",component:PaymentComponent,canActivate:[authGuard]
   },
   {
     path:"wishlists",component:WishlistsComponent,canActivate:[authGuard]
@@ -26,6 +27,9 @@ const routes: Routes = [
   },
   {
     path:"view/:id",component:ViewComponent,canActivate:[authGuard]
+  },
+  {
+    path:"hostings",component:HostingsComponent,canActivate:[authGuard]
   },
   {
     path:"**",redirectTo:""
