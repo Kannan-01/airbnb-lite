@@ -26,12 +26,23 @@
     <div class="col-lg-7 col-sm-12">
       <div class="d-flex align-items-center">
         <div class="profile">
-          <img src="{{ host.userImage }}" alt="loading" class="profile" />
+          <img
+            *ngIf="host.userImage"
+            src="{{ host.userImage }}"
+            alt="loading"
+            class="profile"
+          />
+          <img
+            *ngIf="!host.userImage"
+            src="https://upcdn.io/FW25bBB/image/content/app_logos/81f30ae0-45d4-492c-b414-318374ec0dd3.png?f=webp&w=1920&q=85&fit=shrink-cover"
+            alt="loading"
+            class="profile"
+          />
         </div>
         <div class="ms-4 text-capitalize">
-          Hosted by {{ host.firstName }}
+          Hosted by {{ host.firstName }} {{ host.lastName }}
           <br />
-          <span class="hostDetails"
+          <span *ngIf="host.phoneNumber" class="hostDetails"
             >Contact number : {{ host.phoneNumber }}.</span
           >
         </div>

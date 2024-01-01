@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
   loggedIn: boolean = false;
+  currentlyHosting: boolean = false;
+  reserved: boolean = false;
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,6 +37,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLogged();
+    this.checkHostings();
+    this.checkReservations();
   }
 
   checkLogged() {
@@ -54,9 +58,7 @@ export class HomeComponent implements OnInit {
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
           console.log(res);
-          this.toaster.showSuccess(
-            `${res.existingUser.firstName} login successful !`
-          );
+          this.toaster.showSuccess(`Login successful`);
           sessionStorage.setItem('token', res.token);
           this.router.navigateByUrl('/');
           this.checkLogged();
@@ -69,6 +71,32 @@ export class HomeComponent implements OnInit {
     } else {
       this.toaster.showWarning('Invalid form');
     }
+  }
+  checkHostings() {
+    this.api.getHostings().subscribe({
+      next: (res: any) => {
+        const hosted = res;
+        if (hosted.length > 0) {
+          this.currentlyHosting = true;
+        }
+      },
+      error(err: any) {
+        console.log(err.error);
+      },
+    });
+  }
+  checkReservations() {
+    this.api.getReservations().subscribe({
+      next: (res: any) => {
+        const hosted = res;
+        if (hosted.length > 0) {
+          this.reserved = true;
+        }
+      },
+      error(err: any) {
+        console.log(err.error);
+      },
+    });
   }
   logout() {
     sessionStorage.removeItem('token');
@@ -88,8 +116,8 @@ export class HomeComponent implements OnInit {
         next: (res: any) => {
           document.getElementById('registerModalClose')?.click();
           this.toaster.showSuccess(`${res.firstName} registered succesfully !`);
-          this.router.navigateByUrl('/user/login');
           this.registerForm.reset();
+          document.getElementById('registerModalOpen')?.click();
         },
         error: (err: any) => {
           this.toaster.showError(err.error);

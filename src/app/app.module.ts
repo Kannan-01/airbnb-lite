@@ -23,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaymentComponent } from './payment/payment.component';
 import { HostingsComponent } from './hostings/hostings.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { HostingsComponent } from './hostings/hostings.component';
     AccountComponent,
     PaymentComponent,
     HostingsComponent,
+    ReservationsComponent,
   ],
   imports: [
     BrowserModule,

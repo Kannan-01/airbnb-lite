@@ -5,7 +5,6 @@
     /></a>
 
     <div class="d-flex justify-content-center align-items-center">
-
       <form class="d-flex ms-auto me-5" role="search">
         <div class="d-flex justify-content-center align-items-center searchBar">
           <input
@@ -65,12 +64,18 @@
           </div>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item" routerLink="/wishlists" >Wishlists</a>
+              <a class="dropdown-item" routerLink="/wishlists">Wishlists</a>
             </li>
-            <li >
+            <li>
               <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
             </li>
 
+            <li *ngIf="currentlyHosting">
+              <a class="dropdown-item" routerLink="/hostings">Your hostings</a>
+            </li>
+            <li *ngIf="reserved">
+              <a class="dropdown-item" routerLink="/reservations">Your reservations</a>
+            </li>
             <li>
               <a class="dropdown-item" routerLink="/account">Account details</a>
             </li>

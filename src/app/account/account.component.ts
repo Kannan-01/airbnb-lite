@@ -11,7 +11,7 @@ import { ToasterService } from '../services/toaster.service';
 export class AccountComponent implements OnInit {
   account: any = {};
   image: any = '';
-
+  proof: any = '';
   updateForm = this.fb.group({
     fname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     lname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
@@ -24,7 +24,11 @@ export class AccountComponent implements OnInit {
     address: ['', [Validators.pattern('[a-zA-Z0-9]*')]],
   });
 
-  constructor(private api: ApiService, private fb: FormBuilder,private toaster:ToasterService) {}
+  constructor(
+    private api: ApiService,
+    private fb: FormBuilder,
+    private toaster: ToasterService
+  ) {}
 
   ngOnInit(): void {
     this.accountDetails();
@@ -95,6 +99,35 @@ export class AccountComponent implements OnInit {
       this.image = event.target.result;
       this.updateImage();
     };
+  }
+  // get proof
+  getProof(event: any) {
+    let file = event.target.files[0];
+    // console.log(file);
+    let fr = new FileReader();
+    fr.readAsDataURL(file);
+    fr.onload = (event: any) => {
+      console.log(event.target.result);
+      this.proof = event.target.result;
+    };
+  }
+    
+  updateProof() {
+    if (this.proof) {
+      const idProof = this.proof;
+      const update = { idProof };
+      this.api.updateAccount(update).subscribe({
+        next: (res: any) => {
+          this.toaster.showSuccess('Govt Id Uploaded!');
+          this.accountDetails();
+        },
+        error: (err: any) => {
+          this.toaster.showError(err.error);
+        },
+      });
+    } else {
+      this.toaster.showWarning('Form invalid');
+    }
   }
 
   updateImage() {
@@ -184,7 +217,9 @@ export class AccountComponent implements OnInit {
             },
           });
         } else {
-          this.toaster.showWarning("Old password doesn't match with our database !");
+          this.toaster.showWarning(
+            "Old password doesn't match with our database !"
+          );
         }
       } else {
         this.toaster.showWarning('password do not match');

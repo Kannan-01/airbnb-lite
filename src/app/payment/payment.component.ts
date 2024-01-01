@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ToasterService } from '../services/toaster.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-payment',
@@ -16,8 +16,8 @@ export class PaymentComponent implements OnInit {
   taxes: any = '';
   totalWithTax: any = '';
   property: any = {};
-  checkin=sessionStorage.getItem('checkin');
-  checkout=sessionStorage.getItem('checkout');
+  checkin = sessionStorage.getItem('checkin');
+  checkout = sessionStorage.getItem('checkout');
   ngOnInit(): void {
     this.route.params.subscribe((res: any) => {
       const { id } = res;
@@ -45,7 +45,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private toaster: ToasterService,
     private route: ActivatedRoute,
-    private api: ApiService
+    private api: ApiService,
+    private router: Router
   ) {}
 
   calculate() {
@@ -103,13 +104,48 @@ export class PaymentComponent implements OnInit {
           'onClientAuthorization - you should probably inform your server about completed transaction at this point',
           data
         );
+        const checkin = sessionStorage.getItem('checkin');
+        const checkout = sessionStorage.getItem('checkout');
+        const guests = sessionStorage.getItem('guests');
+        const amount = this.totalWithTax;
+        const propertyId = this.property._id;
+        const title = this.property.title;
+        const state = this.property.state;
+        const district = this.property.district;
+        const city = this.property.city;
+        const image = this.property.image;
+        const category = this.property.category;
+
+        const reserve = {
+          checkin,
+          checkout,
+          guests,
+          amount,
+          propertyId,
+          title,
+          state,
+          district,
+          city,
+          image,
+          category,
+        };
+        this.api.reserveAPI(reserve).subscribe({
+          next: (res: any) => {
+            console.log(res);
+          },
+          error: (err: any) => {
+            console.log(err.error);
+          },
+        });
+
         this.toaster.showSuccess('Your reservation was successfully Placed !');
-        sessionStorage.setItem('checkin',"")
-        sessionStorage.setItem('checkout',"")
-        sessionStorage.setItem('totalWithoutTaxes',"")
-        sessionStorage.setItem('guests',"")
-        sessionStorage.setItem('price',"")
-        sessionStorage.setItem('days',"")
+        this.router.navigateByUrl('/');
+        sessionStorage.setItem('checkin', '');
+        sessionStorage.setItem('checkout', '');
+        sessionStorage.setItem('totalWithoutTaxes', '');
+        sessionStorage.setItem('guests', '');
+        sessionStorage.setItem('price', '');
+        sessionStorage.setItem('days', '');
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);

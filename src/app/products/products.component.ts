@@ -13,10 +13,13 @@ export class ProductsComponent implements OnInit {
   constructor(private api: ApiService,private toaster:ToasterService) {}
   ngOnInit(): void {
     this.loading = true;
+    this.loadProperties();  
+  }
+
+  loadProperties(){
     this.api.propertiesAPI().subscribe((res) => {
       this.allProperties = res;
       this.loading = false;
-      // console.log(res);
     });
   }
 

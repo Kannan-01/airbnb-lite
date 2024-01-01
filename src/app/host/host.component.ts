@@ -65,6 +65,7 @@ export class HostComponent {
       console.log(property);
     } else {
       this.toaster.showWarning('Invalid form');
+      
     }
   }
 

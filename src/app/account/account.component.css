@@ -10,6 +10,7 @@ h1 {
 .form-control::placeholder {
   color: #999;
 }
+
 .profile {
   width: 200px;
   height: 200px;

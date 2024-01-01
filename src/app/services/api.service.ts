@@ -95,4 +95,21 @@ export class ApiService {
   deleteHostings(propertyId: any) {
     return this.http.delete(`${this.SERVER_URL}/deleteProperty/${propertyId}`);
   }
+
+  // reservation api's
+
+  reserveAPI(reserve: any) {
+    return this.http.post(
+      `${this.SERVER_URL}/reserve`,
+      reserve,
+      this.appendTokenToHeader()
+    );
+  }
+
+  getReservations() {
+    return this.http.get(
+      `${this.SERVER_URL}/reservations`,
+      this.appendTokenToHeader()
+    );
+  }
 }

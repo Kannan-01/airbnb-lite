@@ -121,12 +121,16 @@
               <button
                 class="btn-link text-dark border-0 bg-white small"
                 *ngIf="!account.idProof"
+                data-bs-toggle="modal"
+                data-bs-target="#proofModal"
               >
                 Add
               </button>
               <button
                 class="btn-link text-dark border-0 bg-white small"
                 *ngIf="account.idProof"
+                data-bs-toggle="modal"
+                data-bs-target="#proofModal"
               >
                 Edit
               </button>
@@ -610,6 +614,48 @@
                       class="btn rounded text-white"
                       style="background-color: #ff385c"
                       type="submit"
+                    >
+                      update
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="proofModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 style="font-size: 22px" id="exampleModalLabel">
+                  <span class="text-dark">Upload your </span>
+                  <span class="fw-bolder">iD proof</span>
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  id="proofModalClose"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <input (change)="getProof($event)" type="file" class="form-control mb-2" />
+                  <div class="d-grid">
+                    <button
+                      class="btn rounded text-white"
+                      style="background-color: #ff385c"
+                      type="submit"
+                      (click)="updateProof()"
                     >
                       update
                     </button>

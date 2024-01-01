@@ -8,6 +8,7 @@ import { WishlistsComponent } from './wishlists/wishlists.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HostingsComponent } from './hostings/hostings.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
   },
   {
     path:"hostings",component:HostingsComponent,canActivate:[authGuard]
+  },
+  {
+    path:"reservations",component:ReservationsComponent,canActivate:[authGuard]
   },
   {
     path:"**",redirectTo:""

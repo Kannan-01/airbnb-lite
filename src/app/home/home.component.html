@@ -65,17 +65,17 @@
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
               <a
-                class="dropdown-item"
+                class="dropdown-item btn"
+                id="registerModalOpen"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
                 *ngIf="loggedIn == false"
                 >Login</a
-                
               >
             </li>
             <li>
               <a
-                class="dropdown-item"
+                class="dropdown-item btn"
                 data-bs-toggle="modal"
                 data-bs-target="#registerModal"
                 *ngIf="loggedIn == false"
@@ -88,7 +88,14 @@
             <li *ngIf="loggedIn == true">
               <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
             </li>
-
+            <li *ngIf="currentlyHosting">
+              <a class="dropdown-item" routerLink="/hostings">Your hostings</a>
+            </li>
+            <li *ngIf="reserved">
+              <a class="dropdown-item" routerLink="/reservations"
+                >Your reservations</a
+              >
+            </li>
             <li *ngIf="loggedIn == true">
               <a class="dropdown-item" routerLink="/account">Account details</a>
             </li>
