@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  SERVER_URL = 'https://property-server-090y.onrender.com';
+  SERVER_URL = 'https://property-server-090y.onrender.com/';
   constructor(private http: HttpClient) {}
 
   loginAPI(user: any) {
