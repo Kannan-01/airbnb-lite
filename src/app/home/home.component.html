@@ -31,10 +31,9 @@
       </form>
       <div class="nav-item host me-4">
         <a
-          class="nav-link btn host"
-          style="color: rgb(34, 34, 34); font-size: 14px"
+          class="nav-link btn host fw-medium text-danger"
           routerLink="/host"
-          >Airbnb your home</a
+          >Host your home</a
         >
       </div>
       <ul class="navbar-nav mb-2 mb-lg-0 responsive">
@@ -46,21 +45,22 @@
           >
             <div
               style="
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
                 background-color: rgb(255, 56, 92);
               "
-              class="rounded-circle"
+              class="rounded-circle d-flex justify-content-center align-items-center "
+              *ngIf="!domainPic"
             >
               <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
             </div>
-            <!-- <div style="width: 40px; height: 40px" class="rounded-circle">
+            <div *ngIf="domainPic" class="profile">
               <img
                 style="width: 100%; object-fit: cover"
-                src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-rouge.png"
+                src="{{ domainPic }}"
                 alt=""
               />
-            </div> -->
+            </div>
           </div>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
@@ -83,28 +83,28 @@
               >
             </li>
             <li *ngIf="loggedIn == true">
-              <a class="dropdown-item" routerLink="/wishlists">Wishlists</a>
+              <a class="dropdown-item btn" routerLink="/wishlists">Wishlists</a>
             </li>
             <li *ngIf="loggedIn == true">
-              <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
+              <a class="dropdown-item btn" routerLink="/host">Host your home</a>
             </li>
             <li *ngIf="currentlyHosting">
-              <a class="dropdown-item" routerLink="/hostings">Your hostings</a>
+              <a class="dropdown-item btn" routerLink="/hostings">Your hostings</a>
             </li>
             <li *ngIf="reserved">
-              <a class="dropdown-item" routerLink="/reservations"
+              <a class="dropdown-item btn" routerLink="/reservations"
                 >Your reservations</a
               >
             </li>
             <li *ngIf="loggedIn == true">
-              <a class="dropdown-item" routerLink="/account">Account details</a>
+              <a class="dropdown-item btn" routerLink="/account">Account details</a>
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li *ngIf="loggedIn == true" (click)="logout()">
-              <a class="dropdown-item text-danger">Logout</a>
+              <a class="dropdown-item text-danger btn">Logout</a>
             </li>
             <li *ngIf="loggedIn == false">
-              <a class="dropdown-item" routerLink="/host">Airbnb your home</a>
+              <a class="dropdown-item btn" routerLink="/host">Airbnb your home</a>
             </li>
           </ul>
         </li>

@@ -24,11 +24,9 @@ export class ProductsComponent implements OnInit {
   }
 
   addtoWishlist(property: any) {
-    this.loading = true;
     if (sessionStorage.getItem('token')) {
       this.api.addToWishlistAPI(property).subscribe({
         next: (res: any) => {
-          this.loading = false;
           this.toaster.showSuccess(`product added to wishlist !`);
         },
         error: (err: any) => {

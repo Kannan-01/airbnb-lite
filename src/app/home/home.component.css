@@ -32,6 +32,18 @@ h1 {
   margin: auto;
 }
 
+.profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 55px;
+}
+.profile img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 @media (max-width: 500px) {
   .container-fluid {
     padding: 0px 30px !important;

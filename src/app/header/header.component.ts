@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
   currentlyHosting: boolean = false;
   reserved:boolean=false;
+  domainPic=sessionStorage.getItem("domainpic");
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   logout() {
+    sessionStorage.removeItem("domainpic")
     sessionStorage.removeItem('firstName');
     sessionStorage.removeItem('token');
     this.router.navigateByUrl('');

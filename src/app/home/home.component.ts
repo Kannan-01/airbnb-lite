@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   loggedIn: boolean = false;
   currentlyHosting: boolean = false;
   reserved: boolean = false;
-
+  domainPic=sessionStorage.getItem("domainpic");
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -56,11 +56,11 @@ export class HomeComponent implements OnInit {
       const email = this.loginForm.value.email;
       const user = { email, password };
       this.api.loginAPI(user).subscribe({
-        next: (res: any) => {
-          console.log(res);
+        next: (res: any) => {      
+          sessionStorage.setItem("domainpic",res.existingUser.userImage)    
           this.toaster.showSuccess(`Login successful`);
           sessionStorage.setItem('token', res.token);
-          this.router.navigateByUrl('/');
+          location.reload();
           this.checkLogged();
           this.loginForm.reset();
         },
@@ -100,6 +100,8 @@ export class HomeComponent implements OnInit {
   }
   logout() {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem("domainpic")
+    location.reload();
     this.router.navigateByUrl('');
     this.checkLogged();
   }

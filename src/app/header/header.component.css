@@ -14,7 +14,17 @@
   font-size: 15px;
   line-height: 30px;
 }
-
+.profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 55px;
+}
+.profile img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .navbar{
   position: sticky;
   top: 0;
