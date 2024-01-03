@@ -14,13 +14,13 @@
 </div>
 
 <section class="py-5">
-  <div class="container-fluid mt-5" style="padding: 0px 80px">
+  <div class="container-fluid" style="padding: 0px 80px">
     <div class="row">
       <div
-        class="col-lg-3 col-sm-12 mb-5"
+        class="col-lg-3 col-md-6 col-sm-12 mb-5"
         *ngFor="let property of allProperties"
       >
-        <div class="card" style="width: 322px">
+        <div class="card"  style="width: 322px">
           <img
             style="object-fit: cover; border-radius: 11px"
             width="322"
@@ -31,7 +31,7 @@
             alt="..."
           />
           <div class="cardBody">
-            <div class="title text-capitalize">{{ property.title }}</div>
+            <div class="title text-capitalize">{{ property.title.slice(0,35)}}...</div>
             <div class="overview text-muted text-capitalize">
               <span
                 ><i class="fa-solid fa-location-dot text-danger"></i

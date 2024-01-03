@@ -12,6 +12,7 @@ export class AccountComponent implements OnInit {
   account: any = {};
   image: any = '';
   proof: any = '';
+  loading: any = false;
   updateForm = this.fb.group({
     fname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     lname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
@@ -38,7 +39,6 @@ export class AccountComponent implements OnInit {
     this.api.accountDetails().subscribe({
       next: (res: any) => {
         this.account = res;
-        console.log(res);
       },
       error: (err: any) => {
         console.log(err.error);
@@ -90,8 +90,8 @@ export class AccountComponent implements OnInit {
 
   // get file
   getFile(event: any) {
+    this.loading = true;
     let file = event.target.files[0];
-    // console.log(file);
     let fr = new FileReader();
     fr.readAsDataURL(file);
     fr.onload = (event: any) => {
@@ -111,7 +111,7 @@ export class AccountComponent implements OnInit {
       this.proof = event.target.result;
     };
   }
-    
+
   updateProof() {
     if (this.proof) {
       const idProof = this.proof;
@@ -137,8 +137,10 @@ export class AccountComponent implements OnInit {
       const update = { userImage };
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
-          this.toaster.showSuccess('Profile image updated!');
-          // this.loading = false;
+          this.loading = false;
+          console.log(res);
+          sessionStorage.setItem('domainpic', res);
+          this.toaster.showSuccess('Profile image updated it may take some time to reflect in some places');
           this.accountDetails();
         },
         error: (err: any) => {

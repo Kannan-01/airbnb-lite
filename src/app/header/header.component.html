@@ -31,9 +31,9 @@
       </form>
       <div class="nav-item host me-4">
         <a
-          class="nav-link btn host fw-medium text-danger"
+          class="nav-link btn host fw-medium text-danger fw-bold"
           routerLink="/host"
-          >Host your home</a
+          >Host your <span class="text-dark">home</span></a
         >
       </div>
       <ul class="navbar-nav mb-2 mb-lg-0 responsive">
@@ -71,7 +71,7 @@
             </li>
 
             <li *ngIf="currentlyHosting">
-              <a class="dropdown-item btn" routerLink="/hostings">Your hostings</a>
+              <a class="dropdown-item btn" routerLink="/hostings">Currently Hosting</a>
             </li>
             <li *ngIf="reserved">
               <a class="dropdown-item btn" routerLink="/reservations">Your reservations</a>

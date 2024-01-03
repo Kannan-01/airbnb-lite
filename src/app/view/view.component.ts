@@ -136,7 +136,7 @@ export class ViewComponent implements OnInit {
         sessionStorage.setItem('checkin', checkin);
         sessionStorage.setItem('checkout', checkout);
         sessionStorage.setItem('guests', guests);
-        const checkinDate: Date = new Date(checkin);
+                const checkinDate: Date = new Date(checkin);
         const checkoutDate: Date = new Date(checkout);
         const differenceMs: number = Math.abs(
           checkoutDate.getTime() - checkinDate.getTime()
@@ -149,7 +149,7 @@ export class ViewComponent implements OnInit {
           this.property.price * differenceDays + service
         }`;
         const propertyPrice: string = `${this.property.price}`;
-        this.price = this.property.price*differenceDays;
+this.price = this.property.price*differenceDays;
         this.total = totalWithoutTaxes;
         this.difference = differenceDays;
         const days: string = `${differenceDays}`;

@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
   <h1 class="fw-bolder">airbnb <span class="text-dark">Account</span></h1>
   <hr class="mb-4" />
@@ -15,8 +16,17 @@
             formControlName="image"
             (change)="getFile($event)"
           />
-          <div class="profile">
+          <div class="profile" *ngIf="loading == false">
             <img src="{{ account.userImage }}" alt="" />
+          </div>
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+            *ngIf="loading == true"
+            class="profile"
+          >
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
         </div>
         <div *ngIf="!account.userImage">
@@ -649,7 +659,11 @@
               </div>
               <div class="modal-body">
                 <form>
-                  <input (change)="getProof($event)" type="file" class="form-control mb-2" />
+                  <input
+                    (change)="getProof($event)"
+                    type="file"
+                    class="form-control mb-2"
+                  />
                   <div class="d-grid">
                     <button
                       class="btn rounded text-white"
