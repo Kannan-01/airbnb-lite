@@ -17,7 +17,6 @@ export class ViewComponent implements OnInit {
 
   difference: any = '';
   total: any = '';
-  price: any = '';
 
   reservationForm = this.fb.group({
     checkin: ['', [Validators.required]],
@@ -35,7 +34,6 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {
     this.difference = '';
     this.total = '';
-    this.price = '';
     this.loading = true;
     this.route.params.subscribe((res: any) => {
       const { id } = res;
@@ -80,16 +78,16 @@ export class ViewComponent implements OnInit {
         const differenceDays: number = Math.ceil(
           differenceMs / (1000 * 60 * 60 * 24)
         );
-        this.price = this.property.price;
-        const service = 500;
         const totalWithoutTaxes: string = `${
-          this.property.price * differenceDays + service
+          this.property.price * differenceDays + 500
         }`;
-        const propertyPrice: string = `${this.property.price}`;
         this.total = totalWithoutTaxes;
         this.difference = differenceDays;
         const days: string = `${differenceDays}`;
-        sessionStorage.setItem('price', propertyPrice);
+        sessionStorage.setItem(
+          'price',
+          `${this.property.price * this.difference}`
+        );
         sessionStorage.setItem('days', days);
         sessionStorage.setItem('totalWithoutTaxes', totalWithoutTaxes);
       }
@@ -111,16 +109,16 @@ export class ViewComponent implements OnInit {
         const differenceDays: number = Math.ceil(
           differenceMs / (1000 * 60 * 60 * 24)
         );
-        this.price = this.property.price;
-        const service = 500;
         const totalWithoutTaxes: string = `${
-          this.property.price * differenceDays + service
+          this.property.price * differenceDays + 500
         }`;
-        const propertyPrice: string = `${this.property.price}`;
         this.total = totalWithoutTaxes;
         this.difference = differenceDays;
         const days: string = `${differenceDays}`;
-        sessionStorage.setItem('price', propertyPrice);
+        sessionStorage.setItem(
+          'price',
+          `${this.property.price * differenceDays}`
+        );
         sessionStorage.setItem('days', days);
         sessionStorage.setItem('totalWithoutTaxes', totalWithoutTaxes);
       }
@@ -136,7 +134,7 @@ export class ViewComponent implements OnInit {
         sessionStorage.setItem('checkin', checkin);
         sessionStorage.setItem('checkout', checkout);
         sessionStorage.setItem('guests', guests);
-                const checkinDate: Date = new Date(checkin);
+        const checkinDate: Date = new Date(checkin);
         const checkoutDate: Date = new Date(checkout);
         const differenceMs: number = Math.abs(
           checkoutDate.getTime() - checkinDate.getTime()
@@ -144,18 +142,16 @@ export class ViewComponent implements OnInit {
         const differenceDays: number = Math.ceil(
           differenceMs / (1000 * 60 * 60 * 24)
         );
-        const service = 500;
         const totalWithoutTaxes: string = `${
-          this.property.price * differenceDays + service
+          this.property.price * differenceDays + 500
         }`;
-        const propertyPrice: string = `${this.property.price}`;
-this.price = this.property.price*differenceDays;
         this.total = totalWithoutTaxes;
         this.difference = differenceDays;
-        const days: string = `${differenceDays}`;
-
-        sessionStorage.setItem('price', propertyPrice);
-        sessionStorage.setItem('days', days);
+        sessionStorage.setItem(
+          'price',
+          `${this.property.price * differenceDays}`
+        );
+        sessionStorage.setItem('days', `${differenceDays}`);
         sessionStorage.setItem('totalWithoutTaxes', totalWithoutTaxes);
       }
     } else {

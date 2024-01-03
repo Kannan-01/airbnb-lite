@@ -52,7 +52,6 @@ export class PaymentComponent implements OnInit {
   calculate() {
     const price = this.totalWithoutTaxes;
     const withoutTax: number = parseInt(price, 10);
-    console.log(withoutTax);
     this.taxes = (withoutTax * 12) / 100;
     this.totalWithTax = `${this.taxes + withoutTax}`;
   }
