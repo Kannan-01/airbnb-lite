@@ -1,19 +1,14 @@
-.form-control:focus {
+.navbar-toggler {
+  border: 0;
+}
+.navbar-toggler:focus {
+  border: 0;
   box-shadow: none;
-  border: 1px solid rgb(253, 196, 207) !important;
 }
-.form-control::placeholder {
-  color: #999;
+h3 {
+  color: rgb(255, 56, 92);
 }
-.dropdown-menu {
-  min-width: 250px;
-  max-height: 300px;
-  overflow-y: auto;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  font-size: 15px;
-  line-height: 30px;
-}
+
 .profile {
   width: 45px;
   height: 45px;
@@ -25,7 +20,7 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.navbar{
+.navbar {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -39,13 +34,12 @@
   .host {
     display: none;
   }
-  .navbar{
+  .navbar {
     position: relative;
   }
-  .responsive{
+  .responsive {
     position: absolute;
     right: 0;
     top: 20px;
   }
 }
-

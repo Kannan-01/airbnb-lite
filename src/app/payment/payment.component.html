@@ -41,13 +41,13 @@
         We ask every guest to remember a few simple things about what makes a
         great guest.
         <ul class="list-unstyled">
-          <li>. Follow the house rules</li>
-          <li>. Treat your Host's home like your own</li>
+          <li>Follow the house rules</li>
+          <li>Treat your Host's home like your own</li>
         </ul>
       </div>
     </div>
     <div class="col-sm-12 col-lg-6">
-      <div class="card ms-auto mt-5 p-4">
+      <div class="card paymentCard  ms-auto mt-5 p-4">
         <div class="d-flex align-items-center">
           <div class="profile">
             <img src="{{ property.image }}" alt="" />
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="paypal ms-auto">
+      <div class="paypal ms-auto paymentCard">
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
       </div>
     </div>

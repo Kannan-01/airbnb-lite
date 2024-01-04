@@ -18,9 +18,10 @@ export class WishlistsComponent implements OnInit {
 
   getWishlist() {
     this.loading = true;
+    this.allWishlist=[];
     this.api.getWishlistAPI().subscribe({
       next: (res: any) => {
-        // this.allWishlist = res;
+        this.loading = false;
         res.forEach((wishlist: any) => {
           this.currentlyActive.forEach((property: any) => {
             if(wishlist.id==property){
@@ -28,7 +29,6 @@ export class WishlistsComponent implements OnInit {
             }
           });
         });
-        this.loading = false;
       },
       error(err: any) {
         console.log(err.error);

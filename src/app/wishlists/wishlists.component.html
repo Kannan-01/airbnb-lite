@@ -1,30 +1,21 @@
 <app-header></app-header>
-<div
-  *ngIf="loading == true"
-  style="
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  "
->
-  <div class="spinner-border text-danger" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-<div
-  *ngIf="loading == false"
-  class="container-fluid mt-5 mb-5"
-  style="padding: 0px 80px"
->
+
+<div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
   <h1 class="fw-bolder">airbnb <span class="text-dark">Wishlist</span></h1>
   <hr class="mb-4" />
-  <div *ngIf="allWishlist.length==0">
-    <h2>Wishlist empty...</h2>
-  </div>
   <div class="row">
-    <div class="col-lg-3 col-sm-12 mb-5" *ngFor="let property of allWishlist">
+    <div
+      *ngIf="loading == true"
+      style="display: flex; align-items: center; justify-content: center"
+    >
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="loading == false">
+      <div class="col-lg-3 col-sm-12 mb-5" *ngFor="let property of allWishlist">
       <div class="card" style="width: 322px">
         <img
           style="object-fit: cover; border-radius: 11px"

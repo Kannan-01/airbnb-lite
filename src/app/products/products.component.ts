@@ -27,10 +27,10 @@ export class ProductsComponent implements OnInit {
     if (sessionStorage.getItem('token')) {
       this.api.addToWishlistAPI(property).subscribe({
         next: (res: any) => {
-          this.toaster.showSuccess(`product added to wishlist !`);
+          this.toaster.showSuccess(`Added to wishlist !`);
         },
         error: (err: any) => {
-          this.toaster.showError(err.error);
+          this.toaster.showWarning(err.error);
           console.log(err.error);
         },
       });

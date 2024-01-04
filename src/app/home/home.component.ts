@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   loggedIn: boolean = false;
   currentlyHosting: boolean = false;
   reserved: boolean = false;
-  domainPic=sessionStorage.getItem("domainpic");
+  domainPic = sessionStorage.getItem('domainpic');
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -50,14 +50,17 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
+    document.getElementById('SidebarDismiss')?.click();
+
     document.getElementById('loginModalClose')?.click();
+
     if (this.loginForm.valid) {
       const password = this.loginForm.value.password;
       const email = this.loginForm.value.email;
       const user = { email, password };
       this.api.loginAPI(user).subscribe({
-        next: (res: any) => {      
-          sessionStorage.setItem("domainpic",res.existingUser.userImage)    
+        next: (res: any) => {
+          sessionStorage.setItem('domainpic', res.existingUser.userImage);
           this.toaster.showSuccess(`Login successful`);
           sessionStorage.setItem('token', res.token);
           location.reload();
@@ -100,7 +103,7 @@ export class HomeComponent implements OnInit {
   }
   logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem("domainpic")
+    sessionStorage.removeItem('domainpic');
     location.reload();
     this.router.navigateByUrl('');
     this.checkLogged();

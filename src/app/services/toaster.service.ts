@@ -9,7 +9,7 @@ export class ToasterService {
     this.toastr.success(msg);
   }
   showError(msg: any) {
-    this.toastr.error('Error', msg);
+    this.toastr.error(msg);
   }
   showWarning(msg: any) {
     this.toastr.warning(msg);

@@ -1,91 +1,75 @@
-<nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid #ccc">
+<nav class="navbar" style="border-bottom: 1px solid #ccc">
   <div style="padding: 0px 80px" class="container-fluid">
     <a class="navbar-brand" routerLink=""
       ><img width="118" height="64" [src]="brandlogo" alt=""
     /></a>
-
-    <div class="d-flex justify-content-center align-items-center">
-      <form class="d-flex ms-auto me-5" role="search">
-        <div class="d-flex justify-content-center align-items-center searchBar">
-          <input
-            class="form-control me-2"
-            style="height: 2.8rem; width: 20rem; border-radius: 44px"
-            type="search"
-            placeholder="what type are you looking for ?"
-            aria-label="Search"
-          />
-          <button
-            style="
-              margin-left: -50px;
-              width: 2rem;
-              height: 2rem;
-              background-color: rgb(255, 56, 92);
-              color: white;
-            "
-            class="btn rounded-circle d-flex justify-content-center align-items-center"
-            type="submit"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-      <div class="nav-item host me-4">
-        <a
-          class="nav-link btn host fw-medium text-danger fw-bold"
-          routerLink="/host"
-          >Host your <span class="text-dark">home</span></a
-        >
-      </div>
-      <ul class="navbar-nav mb-2 mb-lg-0 responsive">
-        <li class="nav-item dropdown">
-          <div
-            class="border-0 text-dark btn"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-          <div
-          style="
-            width: 45px;
-            height: 45px;
-            background-color: rgb(255, 56, 92);
-          "
-          class="rounded-circle d-flex justify-content-center align-items-center "
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span>
+        <div
+          style="width: 45px; height: 45px; background-color: rgb(255, 56, 92)"
+          class="rounded-circle d-flex justify-content-center align-items-center"
           *ngIf="!domainPic"
         >
           <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
         </div>
-            <div *ngIf="domainPic" class="profile">
-              <img
-                style="width: 100%; object-fit: cover"
-                src="{{ domainPic }}"
-                alt=""
-              />
-            </div>
-          </div>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item btn" routerLink="/wishlists">Wishlists</a>
-            </li>
-            <li>
-              <a class="dropdown-item btn" routerLink="/host">Host your home</a>
-            </li>
+        <div *ngIf="domainPic" class="profile">
+          <img
+            style="width: 100%; object-fit: cover"
+            src="{{ domainPic }}"
+            alt=""
+          />
+        </div>
+      </span>
+    </button>
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h3 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">
+          <a routerLink="/"
+          ><img width="118" height="64" [src]="brandlogo" alt=""
+        /></a>
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
 
-            <li *ngIf="currentlyHosting">
-              <a class="dropdown-item btn" routerLink="/hostings">Currently Hosting</a>
-            </li>
-            <li *ngIf="reserved">
-              <a class="dropdown-item btn" routerLink="/reservations">Your reservations</a>
-            </li>
-            <li>
-              <a class="dropdown-item btn" routerLink="/account">Account details</a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li (click)="logout()">
-              <a class="dropdown-item text-danger btn">Logout</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1">
+          <li class="nav-item">
+            <a class="btn" routerLink="/wishlists">Wishlists</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn" routerLink="/host">Host your home</a>
+          </li>
+          <li *ngIf="currentlyHosting">
+            <a class="btn" routerLink="/hostings">Currently Hosting</a>
+          </li>
+          <li *ngIf="reserved">
+            <a class="btn" routerLink="/reservations">Your reservations</a>
+          </li>
+          <li>
+            <a class="btn" routerLink="/account">Account details</a>
+          </li>
+          <li (click)="logout()">
+            <a class="text-danger btn fw-bold">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
