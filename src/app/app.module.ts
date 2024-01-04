@@ -49,7 +49,11 @@ import { ReservationsComponent } from './reservations/reservations.component';
     MatNativeDateModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      timeOut: 1500,
+      preventDuplicates: true,
+    }),
     BrowserAnimationsModule,
     NgxPayPalModule,
   ],

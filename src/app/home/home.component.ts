@@ -3,18 +3,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { ToasterService } from '../services/toaster.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
-  loggedIn: boolean = false;
-  currentlyHosting: boolean = false;
-  reserved: boolean = false;
+  loggedIn: boolean = this.auth.isLogged();
   domainPic = sessionStorage.getItem('domainpic');
+
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -25,33 +25,18 @@ export class HomeComponent implements OnInit {
     lname: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     dob: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
+    password: ['', [Validators.required]],
   });
 
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router,
-    private toaster: ToasterService
+    private toaster: ToasterService,
+    private auth: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.checkLogged();
-    this.checkHostings();
-    this.checkReservations();
-  }
-
-  checkLogged() {
-    if (sessionStorage.getItem('token')) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
-  }
-
   login() {
-    document.getElementById('SidebarDismiss')?.click();
-
     document.getElementById('loginModalClose')?.click();
 
     if (this.loginForm.valid) {
@@ -61,10 +46,9 @@ export class HomeComponent implements OnInit {
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
           sessionStorage.setItem('domainpic', res.existingUser.userImage);
-          this.toaster.showSuccess(`Login successful`);
           sessionStorage.setItem('token', res.token);
+          this.toaster.showSuccess(`Login successful`);
           location.reload();
-          this.checkLogged();
           this.loginForm.reset();
         },
         error: (err: any) => {
@@ -75,39 +59,16 @@ export class HomeComponent implements OnInit {
       this.toaster.showWarning('Invalid form');
     }
   }
-  checkHostings() {
-    this.api.getHostings().subscribe({
-      next: (res: any) => {
-        const hosted = res;
-        if (hosted.length > 0) {
-          this.currentlyHosting = true;
-        }
-      },
-      error(err: any) {
-        console.log(err.error);
-      },
-    });
-  }
-  checkReservations() {
-    this.api.getReservations().subscribe({
-      next: (res: any) => {
-        const hosted = res;
-        if (hosted.length > 0) {
-          this.reserved = true;
-        }
-      },
-      error(err: any) {
-        console.log(err.error);
-      },
-    });
-  }
+
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('domainpic');
-    location.reload();
+    sessionStorage.removeItem('hosting');
+    sessionStorage.removeItem('reserved');
     this.router.navigateByUrl('');
-    this.checkLogged();
+    location.reload();
   }
+
   register() {
     if (this.registerForm.valid) {
       const firstName = this.registerForm.value.fname;
@@ -122,7 +83,7 @@ export class HomeComponent implements OnInit {
           document.getElementById('registerModalClose')?.click();
           this.toaster.showSuccess(`${res.firstName} registered succesfully !`);
           this.registerForm.reset();
-          document.getElementById('registerModalOpen')?.click();
+          document.getElementById('loginModalOpen')?.click();
         },
         error: (err: any) => {
           this.toaster.showError(err.error);

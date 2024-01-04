@@ -3,38 +3,14 @@
     <a class="navbar-brand" routerLink=""
       ><img width="118" height="64" [src]="brandlogo" alt=""
     /></a>
-    <!-- <div class="searchbar">
-      <form class="d-flex ms-auto me-5" role="search">
-        <div class="d-flex justify-content-center align-items-center">
-          <input
-            class="form-control me-2"
-            style="height: 2.8rem; width: 20rem; border-radius: 44px"
-            type="search"
-            placeholder="what type are you looking for ?"
-            aria-label="Search"
-          />
-          <button
-            style="
-              margin-left: -50px;
-              width: 2rem;
-              height: 2rem;
-              background-color: rgb(255, 56, 92);
-              color: white;
-            "
-            class="btn rounded-circle d-flex justify-content-center align-items-center"
-            type="submit"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-      </form>
-    </div> -->
     <button
       class="navbar-toggler"
+      style="border: none; box-shadow: none"
       type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasNavbar"
-      aria-controls="offcanvasNavbar"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span>
@@ -54,33 +30,13 @@
         </div>
       </span>
     </button>
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-    >
-      <div class="offcanvas-header">
-        <h3 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">
-          <a routerLink="/"
-            ><img width="118" height="64" [src]="brandlogo" alt=""
-          /></a>
-        </h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-          id="SidebarDismiss"
-        ></button>
-      </div>
-
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="d-flex justify-content-center text-center">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a
               class="btn"
-              id="registerModalOpen"
+              id="loginModalOpen"
               data-bs-toggle="modal"
               data-bs-target="#loginModal"
               *ngIf="loggedIn == false"
@@ -102,10 +58,10 @@
           <li *ngIf="loggedIn == true" class="nav-item">
             <a class="btn" routerLink="/host">Host your home</a>
           </li>
-          <li *ngIf="currentlyHosting">
+          <li *ngIf="loggedIn == true">
             <a class="btn" routerLink="/hostings">Currently Hosting</a>
           </li>
-          <li *ngIf="reserved">
+          <li *ngIf="loggedIn == true">
             <a class="btn" routerLink="/reservations">Your reservations</a>
           </li>
           <li *ngIf="loggedIn == true">

@@ -10,16 +10,17 @@ import { ToasterService } from '../services/toaster.service';
 export class ProductsComponent implements OnInit {
   loading: boolean = false;
   allProperties: any = [];
-  constructor(private api: ApiService,private toaster:ToasterService) {}
+
+  constructor(private api: ApiService, private toaster: ToasterService) {}
   ngOnInit(): void {
-    this.loading = true;
-    this.loadProperties();  
+    this.getProperties();
   }
 
-  loadProperties(){
+  getProperties() {
+    this.loading = true;
     this.api.propertiesAPI().subscribe((res) => {
-      this.allProperties = res;
       this.loading = false;
+      this.allProperties = res;
     });
   }
 
@@ -31,12 +32,10 @@ export class ProductsComponent implements OnInit {
         },
         error: (err: any) => {
           this.toaster.showWarning(err.error);
-          console.log(err.error);
         },
       });
     } else {
       this.toaster.showWarning('Login to continue ');
     }
   }
-  
 }

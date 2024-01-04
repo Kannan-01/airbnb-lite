@@ -14,11 +14,10 @@
   </div>
 </div>
 
-
 <div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
   <h1 class="fw-bolder">Currently <span class="text-dark">Hosting</span></h1>
   <hr class="mb-4" />
-  <div *ngIf="hostings.length==0">
+  <div *ngIf="hostings.length == 0">
     <h2>You're not currently hosting !</h2>
   </div>
   <div class="row">
@@ -37,13 +36,15 @@
                 {{ property.title }}
               </h4>
 
-              <span class="small text-capitalize">
+              <span class="small">
                 <i class="fa-solid fa-location-dot text-danger"></i>
               </span>
-              {{ property.city }} , {{ property.district }} ,
-              {{ property.state }}
-              <br />
-              # {{ property.category }}
+              <span class="text-capitalize">
+                {{ property.city }} , {{ property.district }} ,
+                {{ property.state }}
+                <br />
+                # {{ property.category }}
+              </span>
             </div>
           </div>
           <div

@@ -27,8 +27,4 @@ h1 {
   .container-fluid {
     padding: 0px 30px !important;
   }
-  .responsive {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
 }

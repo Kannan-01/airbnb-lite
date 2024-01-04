@@ -20,7 +20,7 @@
         class="col-lg-3 col-md-6 col-sm-12 mb-5"
         *ngFor="let property of allProperties"
       >
-        <div class="card"  style="width: 322px">
+        <div class="card" style="width: 322px">
           <img
             style="object-fit: cover; border-radius: 11px"
             width="322"
@@ -31,11 +31,11 @@
             alt="..."
           />
           <div class="cardBody">
-            <div class="title text-capitalize">{{ property.title.slice(0,35)}}...</div>
+            <div class="title text-capitalize">
+              {{ property.title.slice(0, 35) }}...
+            </div>
             <div class="overview text-muted text-capitalize">
-              <span
-                ><i class="fa-solid fa-location-dot text-danger"></i
-              ></span>
+              <span><i class="fa-solid fa-location-dot text-danger"></i></span>
               {{ property.city }}, {{ property.district }} ,
               {{ property.state }}
             </div>
@@ -48,7 +48,6 @@
             class="position-absolute"
             style="cursor: pointer; right: 0; padding: 20px"
           >
-          
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

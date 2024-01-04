@@ -18,14 +18,15 @@ export class WishlistsComponent implements OnInit {
 
   getWishlist() {
     this.loading = true;
-    this.allWishlist=[];
+    this.allWishlist = [];
     this.api.getWishlistAPI().subscribe({
       next: (res: any) => {
+        console.log(res);
         this.loading = false;
         res.forEach((wishlist: any) => {
           this.currentlyActive.forEach((property: any) => {
-            if(wishlist.id==property){
-              this.allWishlist.push(wishlist);              
+            if (wishlist.id == property) {
+              this.allWishlist.push(wishlist);
             }
           });
         });
