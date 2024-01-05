@@ -5,16 +5,15 @@
     /></a>
 
     <!-- search bar area -->
-
     <div class="row">
       <div class="d-none d-sm-block d-md-block col-lg-12">
         <div class="d-flex justify-content-center align-items-center">
           <input
             class="form-control me-2"
-            style="height: 2.8rem; width: 20rem; border-radius: 44px"
+            style="height: 2.8rem; width: 35rem; border-radius: 44px"
             [(ngModel)]="searchKey"
             (change)="Searching($event)"
-            placeholder="what type are you looking for ?"
+            placeholder="Search for destinations and types"
             aria-label="Search"
           />
           <button
@@ -48,16 +47,8 @@
         <div
           style="width: 45px; height: 45px; background-color: rgb(255, 56, 92)"
           class="rounded-circle d-flex justify-content-center align-items-center"
-          *ngIf="!domainPic"
         >
           <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
-        </div>
-        <div *ngIf="domainPic" class="profile">
-          <img
-            style="width: 100%; object-fit: cover"
-            src="{{ domainPic }}"
-            alt=""
-          />
         </div>
       </span>
     </button>
@@ -66,21 +57,21 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a
-              class="btn"
+              class="btn fw-bold"
               id="loginModalOpen"
               data-bs-toggle="modal"
               data-bs-target="#loginModal"
               *ngIf="loggedIn == false"
-              >Login</a
+              >Log <span class="text-danger">in</span></a
             >
           </li>
           <li class="nav-item">
             <a
-              class="btn"
+              class="btn fw-bold"
               data-bs-toggle="modal"
               data-bs-target="#registerModal"
               *ngIf="loggedIn == false"
-              >Sign up</a
+              >Sign <span class="text-danger">up</span></a
             >
           </li>
           <li class="nav-item" *ngIf="loggedIn == true">
@@ -102,6 +93,7 @@
             <a class="text-danger btn fw-bold">Logout</a>
           </li>
         </ul>
+        
       </div>
     </div>
   </div>

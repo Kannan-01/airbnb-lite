@@ -11,9 +11,9 @@ export class ProductsComponent implements OnInit, OnChanges {
   loading: boolean = false;
   allProperties: any = [];
   @Input() searchEvent: string = '';
+  searchKey: any = '';
   constructor(private api: ApiService, private toaster: ToasterService) {}
   ngOnInit(): void {
-    console.log('Search Event:', this.searchEvent);
     this.loading = true;
     this.api.propertiesAPI().subscribe((res) => {
       this.loading = false;
@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     });
   }
   ngOnChanges(): void {
-    console.log('Search Event changed:', this.searchEvent);
+    this.searchKey = this.searchEvent;
   }
   addtoWishlist(property: any) {
     if (sessionStorage.getItem('token')) {

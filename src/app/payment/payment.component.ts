@@ -138,13 +138,13 @@ export class PaymentComponent implements OnInit {
         });
 
         this.toaster.showSuccess('Your reservation was successfully Placed !');
-        this.router.navigateByUrl('/');
-        sessionStorage.setItem('checkin', '');
-        sessionStorage.setItem('checkout', '');
-        sessionStorage.setItem('totalWithoutTaxes', '');
-        sessionStorage.setItem('guests', '');
-        sessionStorage.setItem('price', '');
-        sessionStorage.setItem('days', '');
+        this.router.navigateByUrl('/reservations');
+        sessionStorage.removeItem('checkin');
+        sessionStorage.removeItem('checkout');
+        sessionStorage.removeItem('totalWithoutTaxes');
+        sessionStorage.removeItem('guests');
+        sessionStorage.removeItem('price');
+        sessionStorage.removeItem('days');
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);

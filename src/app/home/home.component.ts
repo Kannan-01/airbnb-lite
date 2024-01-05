@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
@@ -9,11 +9,10 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
-  loggedIn: boolean = this.auth.isLogged();
-  domainPic: any = '';
+  loggedIn: boolean = false;
 
   searchKey: any = '';
 
@@ -37,6 +36,10 @@ export class HomeComponent {
     private toaster: ToasterService,
     private auth: AuthService
   ) {}
+
+  ngOnInit(): void {
+    this.loggedIn = this.auth.isLogged();
+  }
   Searching(event: any) {
     this.searchKey = event.target.value;
   }
@@ -49,9 +52,9 @@ export class HomeComponent {
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
           document.getElementById('CollapseClose')?.click();
-          this.domainPic = res.existingUser.userImage;
           sessionStorage.setItem('token', res.token);
           this.toaster.showSuccess(`Login successful`);
+          this.loggedIn = true;
           this.loginForm.reset();
         },
         error: (err: any) => {
@@ -84,7 +87,6 @@ export class HomeComponent {
       this.api.registerAPI(user).subscribe({
         next: (res: any) => {
           document.getElementById('registerModalClose')?.click();
-          document.getElementById('CollapseClose')?.click();
           this.toaster.showSuccess(`${res.firstName} registered succesfully !`);
           this.registerForm.reset();
           document.getElementById('loginModalOpen')?.click();

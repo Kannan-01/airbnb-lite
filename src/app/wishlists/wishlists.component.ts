@@ -13,11 +13,14 @@ export class WishlistsComponent implements OnInit {
 
   constructor(private api: ApiService, private toaster: ToasterService) {}
   ngOnInit(): void {
-    this.getWishlist();
+    this.loading=true
+    this.api.getWishlistAPI().subscribe((res: any) => {
+      this.allWishlist = res;
+      this.loading=false
+    });
   }
 
   getWishlist() {
-    this.allWishlist = [];
     this.api.getWishlistAPI().subscribe((res: any) => {
       this.allWishlist = res;
     });

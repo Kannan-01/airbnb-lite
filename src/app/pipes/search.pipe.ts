@@ -4,18 +4,25 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'search',
 })
 export class SearchPipe implements PipeTransform {
-  transform(allUsers: any[], searchKey: string): any[] {
+  transform(allProperties: any[], searchKey: string): any[] {
     const result: any = [];
-    if (!allUsers || searchKey == '') {
-      return allUsers;
+    if (!allProperties || searchKey.trim() === '') {
+      return allProperties;
     } else {
-      allUsers.forEach((item: any) => {
-        if (
-          item.name
+      allProperties.forEach((item: any) => {
+        const category = item.category
+          .trim()
+          .toLowerCase()
+          .includes(searchKey.trim().toLowerCase());
+
+        const district =
+          item.district &&
+          item.district
             .trim()
             .toLowerCase()
-            .includes(searchKey.trim().toLowerCase())
-        ) {
+            .includes(searchKey.trim().toLowerCase());
+
+        if (category || district) {
           result.push(item);
         }
       });
