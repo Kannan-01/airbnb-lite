@@ -27,12 +27,7 @@ h1 {
     object-fit: cover;
   }
 @media (max-width: 500px) {
-  .container-fluid {
-    padding: 0px 30px !important;
-    margin-top: 1rem !important;
-  }
   .card {
-    margin-top: 1.5rem;
     width: 300px;
     padding: 0px;
   }

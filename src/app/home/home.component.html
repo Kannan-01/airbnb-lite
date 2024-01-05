@@ -1,12 +1,43 @@
 <nav class="navbar" style="border-bottom: 1px solid #ccc">
-  <div style="padding: 0px 80px" class="container-fluid">
-    <a class="navbar-brand" routerLink=""
+  <div class="container">
+    <a class="navbar-brand" routerLink="/"
       ><img width="118" height="64" [src]="brandlogo" alt=""
     /></a>
+
+    <!-- search bar area -->
+
+    <div class="row">
+      <div class="d-none d-sm-block d-md-block col-lg-12">
+        <div class="d-flex justify-content-center align-items-center">
+          <input
+            class="form-control me-2"
+            style="height: 2.8rem; width: 20rem; border-radius: 44px"
+            [(ngModel)]="searchKey"
+            (change)="Searching($event)"
+            placeholder="what type are you looking for ?"
+            aria-label="Search"
+          />
+          <button
+            style="
+              margin-left: -50px;
+              width: 2rem;
+              height: 2rem;
+              background-color: rgb(255, 56, 92);
+              color: white;
+            "
+            class="btn rounded-circle d-flex justify-content-center align-items-center"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <button
       class="navbar-toggler"
       style="border: none; box-shadow: none"
       type="button"
+      id="CollapseClose"
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
@@ -78,7 +109,7 @@
 
 <!-- cards section -->
 
-<app-products></app-products>
+<app-products [searchEvent]="searchKey"></app-products>
 <!-- Button trigger modal -->
 
 <!--Login Modal -->

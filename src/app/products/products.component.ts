@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ToasterService } from '../services/toaster.service';
 
@@ -7,23 +7,22 @@ import { ToasterService } from '../services/toaster.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
   loading: boolean = false;
   allProperties: any = [];
-
+  @Input() searchEvent: string = '';
   constructor(private api: ApiService, private toaster: ToasterService) {}
   ngOnInit(): void {
-    this.getProperties();
-  }
-
-  getProperties() {
+    console.log('Search Event:', this.searchEvent);
     this.loading = true;
     this.api.propertiesAPI().subscribe((res) => {
       this.loading = false;
       this.allProperties = res;
     });
   }
-
+  ngOnChanges(): void {
+    console.log('Search Event changed:', this.searchEvent);
+  }
   addtoWishlist(property: any) {
     if (sessionStorage.getItem('token')) {
       this.api.addToWishlistAPI(property).subscribe({

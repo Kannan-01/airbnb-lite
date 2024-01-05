@@ -26,10 +26,3 @@ h1 {
     font-weight: 600;
     color: rgb(34, 34, 34);
   }
-  
-  @media (max-width: 500px) {
-    .container-fluid {
-      padding: 0px 30px !important;
-      margin-top: 1rem !important;
-    }
-  }

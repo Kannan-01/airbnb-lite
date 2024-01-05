@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-wishlists',
@@ -9,56 +10,27 @@ import { ApiService } from '../services/api.service';
 export class WishlistsComponent implements OnInit {
   allWishlist: any = [];
   loading: boolean = false;
-  allProperties: any = [];
-  currentlyActive: any = [];
-  constructor(private api: ApiService) {}
+
+  constructor(private api: ApiService, private toaster: ToasterService) {}
   ngOnInit(): void {
-    this.loadProperties();
+    this.getWishlist();
   }
 
   getWishlist() {
-    this.loading = true;
     this.allWishlist = [];
-    this.api.getWishlistAPI().subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.loading = false;
-        res.forEach((wishlist: any) => {
-          this.currentlyActive.forEach((property: any) => {
-            if (wishlist.id == property) {
-              this.allWishlist.push(wishlist);
-            }
-          });
-        });
-      },
-      error(err: any) {
-        console.log(err.error);
-      },
+    this.api.getWishlistAPI().subscribe((res: any) => {
+      this.allWishlist = res;
     });
   }
 
   removeItem(id: any) {
     this.api.deleteWishlistItem(id).subscribe({
       next: (res: any) => {
+        this.toaster.showSuccess('Property removed');
         this.getWishlist();
       },
       error: (err: any) => {
         console.log(err);
-      },
-    });
-  }
-
-  loadProperties() {
-    this.api.propertiesAPI().subscribe({
-      next: (res: any) => {
-        this.allProperties = res;
-        res.forEach((property: any) => {
-          this.currentlyActive.push(property._id);
-        });
-        this.getWishlist();
-      },
-      error(err: any) {
-        console.log(err.error);
       },
     });
   }

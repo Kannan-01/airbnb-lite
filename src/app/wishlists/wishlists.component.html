@@ -1,8 +1,11 @@
 <app-header></app-header>
 
-<div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
+<div class="container mt-5 mb-5">
   <h1 class="fw-bolder">airbnb <span class="text-dark">Wishlist</span></h1>
   <hr class="mb-4" />
+  <div *ngIf="allWishlist.length == 0">
+    <h2>You Wishlist is empty..</h2>
+  </div>
   <div class="row">
     <div
       *ngIf="loading == true"
@@ -15,7 +18,7 @@
   </div>
 
   <div class="row" *ngIf="loading == false">
-      <div class="col-lg-3 col-sm-12 mb-5" *ngFor="let property of allWishlist">
+      <div class="col-lg-3 col-sm-12 mb-5 d-flex justify-content-center align-items-center" *ngFor="let property of allWishlist">
       <div class="card" style="width: 322px">
         <img
           style="object-fit: cover; border-radius: 11px"
@@ -27,11 +30,13 @@
         />
         <div class="cardBody">
           <div class="title text-capitalize">{{ property.title }}</div>
-          <div class="overview text-muted">
-            {{ property.description.slice(0, 80) }}...
+          <div class="overview text-muted text-capitalize">
+            <span><i class="fa-solid fa-location-dot text-danger"></i></span>
+            {{ property.city }}, {{ property.district }},
+            {{ property.state }}
           </div>
           <div class="rate">
-            ₹ {{ property.price }}
+            ₹ {{ property.price }}/-
             <span class="text-muted fw-medium">night</span>
           </div>
         </div>

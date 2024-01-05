@@ -36,13 +36,8 @@ export class AccountComponent implements OnInit {
   }
 
   accountDetails() {
-    this.api.accountDetails().subscribe({
-      next: (res: any) => {
-        this.account = res;
-      },
-      error: (err: any) => {
-        console.log(err.error);
-      },
+    this.api.accountDetails().subscribe((res: any) => {
+      this.account = res;
     });
   }
 
@@ -140,7 +135,9 @@ export class AccountComponent implements OnInit {
           this.loading = false;
           console.log(res);
           sessionStorage.setItem('domainpic', res);
-          this.toaster.showSuccess('Profile image updated it may take some time to reflect in some places');
+          this.toaster.showSuccess(
+            'Profile image updated it may take some time to reflect in some places'
+          );
           this.accountDetails();
         },
         error: (err: any) => {
@@ -236,8 +233,12 @@ export class AccountComponent implements OnInit {
       document.getElementById('nameModalClose')?.click();
       const firstName = this.updateForm.value.fname;
       const update = { firstName };
+      console.log('request recieve');
+
       this.api.updateAccount(update).subscribe({
         next: (res: any) => {
+          console.log('request gener');
+
           this.toaster.showSuccess('Name updated !');
           this.accountDetails();
         },

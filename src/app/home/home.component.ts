@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,9 @@ export class HomeComponent {
   brandlogo: string = './assets/images/airbnb.png';
   userImg: string = './assets/images/People.png';
   loggedIn: boolean = this.auth.isLogged();
-  domainPic = sessionStorage.getItem('domainpic');
+  domainPic: any = '';
+
+  searchKey: any = '';
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,20 +37,21 @@ export class HomeComponent {
     private toaster: ToasterService,
     private auth: AuthService
   ) {}
-
+  Searching(event: any) {
+    this.searchKey = event.target.value;
+  }
   login() {
     document.getElementById('loginModalClose')?.click();
-
     if (this.loginForm.valid) {
       const password = this.loginForm.value.password;
       const email = this.loginForm.value.email;
       const user = { email, password };
       this.api.loginAPI(user).subscribe({
         next: (res: any) => {
-          sessionStorage.setItem('domainpic', res.existingUser.userImage);
+          document.getElementById('CollapseClose')?.click();
+          this.domainPic = res.existingUser.userImage;
           sessionStorage.setItem('token', res.token);
           this.toaster.showSuccess(`Login successful`);
-          location.reload();
           this.loginForm.reset();
         },
         error: (err: any) => {
@@ -65,8 +68,8 @@ export class HomeComponent {
     sessionStorage.removeItem('domainpic');
     sessionStorage.removeItem('hosting');
     sessionStorage.removeItem('reserved');
-    this.router.navigateByUrl('');
-    location.reload();
+    this.router.navigateByUrl('/');
+    this.loggedIn = false;
   }
 
   register() {
@@ -81,6 +84,7 @@ export class HomeComponent {
       this.api.registerAPI(user).subscribe({
         next: (res: any) => {
           document.getElementById('registerModalClose')?.click();
+          document.getElementById('CollapseClose')?.click();
           this.toaster.showSuccess(`${res.firstName} registered succesfully !`);
           this.registerForm.reset();
           document.getElementById('loginModalOpen')?.click();

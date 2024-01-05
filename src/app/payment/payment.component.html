@@ -1,19 +1,19 @@
 <app-header></app-header>
-<div class="container-fluid mt-5 mb-5" style="padding: 0px 80px">
+<div class="container mt-5 mb-5">
   <h1 class="fw-bolder">Request to <span class="text-dark">book</span></h1>
   <hr class="mb-4" />
-  <div class="row">
+  <div class="row d-flex justify-content-center align-items-center">
     <div class="col-sm-12 col-lg-6">
       <div class="mt-3">
         <h5 class="fw-bold mb-4">Your trip</h5>
         <div class="d-flex justify-content-between">
           <div>
             <span class="fw-semibold">Check-in</span> <br />
-            {{checkin}}
+            {{ checkin }}
           </div>
           <div>
             <span class="fw-semibold">Checkout</span> <br />
-            {{checkout}}
+            {{ checkout }}
           </div>
         </div>
       </div>
@@ -46,15 +46,16 @@
         </ul>
       </div>
     </div>
-    <div class="col-sm-12 col-lg-6">
-      <div class="card paymentCard  ms-auto mt-5 p-4">
+    <div
+      class="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center flex-column"
+    >
+      <div class="card paymentCard ms-auto mt-5 p-4">
         <div class="d-flex align-items-center">
           <div class="profile">
             <img src="{{ property.image }}" alt="" />
           </div>
           <div class="ms-3">
-            <span class="medium">{{ property.category }}</span> <br />
-            {{ property.title }}
+            <span class="fw-bold"> {{ property.title }}</span>
             <br />
             <span class="small">
               <i class="fa-solid fa-location-dot text-danger"></i>
@@ -62,6 +63,7 @@
               {{ property.state }}
             </span>
             <br />
+            <span class="small"># {{ property.category }}</span> <br />
           </div>
         </div>
         <hr />

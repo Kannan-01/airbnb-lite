@@ -1,6 +1,6 @@
 <nav class="navbar" style="border-bottom: 1px solid #ccc">
-  <div style="padding: 0px 80px" class="container-fluid">
-    <a class="navbar-brand" routerLink=""
+  <div class="container">
+    <a class="navbar-brand" routerLink="/"
       ><img width="118" height="64" [src]="brandlogo" alt=""
     /></a>
     <button
@@ -17,16 +17,8 @@
         <div
           style="width: 45px; height: 45px; background-color: rgb(255, 56, 92)"
           class="rounded-circle d-flex justify-content-center align-items-center"
-          *ngIf="!domainPic"
         >
           <i style="color: white" class="fa-solid fa-user fs-4 p-2"></i>
-        </div>
-        <div *ngIf="domainPic" class="profile">
-          <img
-            style="width: 100%; object-fit: cover"
-            src="{{ domainPic }}"
-            alt=""
-          />
         </div>
       </span>
     </button>

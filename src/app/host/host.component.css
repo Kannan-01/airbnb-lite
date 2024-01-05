@@ -13,14 +13,8 @@ h1 {
   .responsive {
     display: none;
   }
-  .container-fluid {
-    padding: 0px 30px !important;
-  }
   img {
     margin-bottom: 2rem;
     width: 100%;
-  }
-  .imageGrp {
-    padding: 0px !important;
   }
 }

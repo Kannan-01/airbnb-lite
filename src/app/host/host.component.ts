@@ -50,10 +50,8 @@ export class HostComponent {
       };
       this.api.hostAPI(property).subscribe({
         next: (res: any) => {
-          console.log(res);
-
           this.toaster.showSuccess(`Hosted succesfully !`);
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('/hostings');
           this.hostForm.reset();
         },
         error: (err: any) => {

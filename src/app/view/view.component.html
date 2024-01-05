@@ -13,18 +13,18 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-<div class="container-fluid" style="padding: 0px 80px" *ngIf="loading == false">
+<div class="container" *ngIf="loading == false">
   <div class="mt-4 mb-3">
     <h3 class="text-capitalize">{{ property.title }}</h3>
   </div>
 
-  <div class="row">
+  <div class="row d-flex justify-content-center align-items-center">
     <div class="imageBanner col-lg-12 col-sm-12">
       <img [src]="property.image" alt="" style="background-repeat: no-repeat" />
     </div>
   </div>
 
-  <div class="row mt-5 mb-5">
+  <div class="row mt-5 mb-5 d-flex justify-content-center align-items-center">
     <div class="col-lg-7 col-sm-12">
       <div class="d-flex align-items-center">
         <div class="profile">

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { PaymentComponent } from './payment/payment.component';
 import { HostingsComponent } from './hostings/hostings.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { SearchPipe } from './pipes/search.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
     PaymentComponent,
     HostingsComponent,
     ReservationsComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
     MatFormFieldModule,
     MatNativeDateModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
