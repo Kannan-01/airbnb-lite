@@ -13,8 +13,6 @@ export class ReservationsComponent {
     this.loading = true;
     this.api.getReservations().subscribe((res: any) => {
       this.reservations = res;
-      console.log(res);
-      
       this.loading = false;
     });
   }

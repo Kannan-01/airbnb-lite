@@ -138,7 +138,7 @@ export class PaymentComponent implements OnInit {
         });
 
         this.toaster.showSuccess('Your reservation was successfully Placed !');
-        this.router.navigateByUrl('/reservations');
+        this.router.navigateByUrl('/');
         sessionStorage.removeItem('checkin');
         sessionStorage.removeItem('checkout');
         sessionStorage.removeItem('totalWithoutTaxes');
