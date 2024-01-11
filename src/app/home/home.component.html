@@ -122,6 +122,7 @@
           data-bs-dismiss="modal"
           aria-label="Close"
           id="loginModalClose"
+          (click)="resetForm()"
         ></button>
       </div>
       <div class="modal-body p-4">
@@ -218,6 +219,7 @@
           class="btn-close"
           data-bs-dismiss="modal"
           id="registerModalClose"
+          (click)="resetForm()"
           aria-label="Close"
         ></button>
       </div>

@@ -43,6 +43,9 @@ export class HomeComponent implements OnInit {
   Searching(event: any) {
     this.searchKey = event.target.value;
   }
+  resetForm(){
+    this.registerForm.reset();
+  }
   login() {
     document.getElementById('loginModalClose')?.click();
     if (this.loginForm.valid) {
